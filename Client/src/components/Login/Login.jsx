@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { useLoginMutation } from '../../redux/api/userApi'
 import { setCredentials } from '../../redux/slices/authSlice'
+import Logo from '../../assets/Logo.png'
 const Login = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -20,8 +21,9 @@ const Login = () => {
     e.preventDefault()
     try {
       const result = await login({ email, password })
-      console.log(result)
+     localStorage.setItem("token",result.data.token) 
       dispatch(setCredentials(result.data.Admin))
+      
     } catch (error) {
       console.log(error)
     }
@@ -35,15 +37,15 @@ const Login = () => {
         >
           <img
             className="w-8 h-8 mr-2"
-            src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/logo.svg"
+            src={Logo}
             alt="logo"
           />
-          Flowbite
+          DevSikShaHub
         </a>
         <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-            <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
-              Create an account
+            <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white text-center">
+              Login to your account
             </h1>
             <form
               className="space-y-4 md:space-y-6"
@@ -117,14 +119,15 @@ const Login = () => {
               >
                 Login
               </button>
-              <p className="text-sm font-light text-gray-500 dark:text-gray-400">
-                NEw?{' '}
-                <a
-                  href="#"
+              <p className="text-sm font-light text-center text-gray-500 dark:text-gray-400">
+                New?
+                <Link
+                  to={'/register'}
+                 
                   className="font-medium text-primary-600 hover:underline dark:text-primary-500"
                 >
-                  Login here
-                </a>
+                  Register here
+                </Link>
               </p>
             </form>
           </div>

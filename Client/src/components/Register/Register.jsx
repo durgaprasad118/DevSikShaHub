@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { useRegisterMutation } from '../../redux/api/userApi'
 import { setCredentials } from '../../redux/slices/authSlice'
+import { Link } from 'react-router-dom'
+import Logo from '../../assets/Logo.png'
 const SignUp = () => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
@@ -31,7 +33,6 @@ const SignUp = () => {
         email,
         password,
       })
-      // console.log(result.data.admin);
       dispatch(setCredentials(result.data.admin))
       navigate('/')
     } catch (error) {
@@ -47,14 +48,14 @@ const SignUp = () => {
         >
           <img
             className="w-8 h-8 mr-2"
-            src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/logo.svg"
+            src={Logo}
             alt="DevSikShaHub logo"
           />
           DevSikShaHub
         </a>
         <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-            <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+            <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white text-center">
               Create an account
             </h1>
             <form
@@ -166,12 +167,12 @@ const SignUp = () => {
               </button>
               <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                 Already have an account?{' '}
-                <a
-                  href="#"
+                <Link
+                  to={'/login'}
                   className="font-medium text-primary-600 hover:underline dark:text-primary-500"
                 >
                   Login here
-                </a>
+                </Link>
               </p>
             </form>
           </div>

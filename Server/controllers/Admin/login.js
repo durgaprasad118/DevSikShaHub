@@ -29,7 +29,7 @@ const login = async (req, res) => {
     }
 
     const token = genrateToken(res, existingAdmin._id)
-    
+
     res.status(201).json({
       token: token,
       message: 'Admin Login successfull',
