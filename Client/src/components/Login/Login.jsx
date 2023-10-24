@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useLoginMutation } from '../../redux/api/userApi'
 import { setCredentials } from '../../redux/slices/authSlice'
 import Logo from '../../assets/Logo.png'
+import { ErrorToast, WarnToast } from '../../../../Server/utils/Toasts'
 const Login = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -21,6 +22,10 @@ const Login = () => {
     e.preventDefault()
     try {
       const result = await login({ email, password })
+      if(result.error){
+        // console.log(result.error.data.message);
+        ErrorToast(`${result.error.data.message}`)
+      }
      localStorage.setItem("token",result.data.token) 
       dispatch(setCredentials(result.data.Admin))
       
@@ -30,7 +35,7 @@ const Login = () => {
   }
   return (
     <section className="bg-gray-50 dark:bg-gray-900">
-      <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+      <div className="mt-24 flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
         <a
           href="#"
           className="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white"

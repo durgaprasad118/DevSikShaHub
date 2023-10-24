@@ -35,7 +35,7 @@ const Dropdown = () => {
           >
             <li>
               <a className="block px-4 py-2 bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-                {userInfo?.name}
+                {userInfo.name}
               </a>
             </li>
             <li></li>

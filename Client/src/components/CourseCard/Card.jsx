@@ -14,13 +14,14 @@ const Card = ({
   _id,
 }) => {
   const { userInfo } = useSelector((state) => state.auth)
+  const {id}= userInfo;
 
   return (
     <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 hover:scale-[1.03] transition-transform duration-300 ease-out">
-      <Link to={`/course/${_id}`}>
+      <Link to={admin==id?  `/course/${_id}`:`/courses`  }>
         <div className="relative">
           <img
-            className="rounded-t-lg"
+            className="rounded-t-lg w-full"
             src={imageLink || altImage}
             alt=""
             loading="lazy"
@@ -31,7 +32,7 @@ const Card = ({
               Published
             </span>
           ) : (
-            <span className="absolute bottom-2 right-1 bg-red-100 text-red-800 text-lg font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-red-400 border border-red-400">
+            <span className="absolute bottom-2 right-1 bg-red-100 text-red-800 text-sm md:text-lg font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-red-400 border border-red-400">
               Not Published
             </span>
           )}

@@ -5,11 +5,12 @@ export const coursesApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: 'http://localhost:8000/',
   }),
-  tagTypes:['allcourses'],
   endpoints: (builder) => ({
-    getCourses: builder.query({ query: (name) => `course/${name}` })
+    getCourses: builder.query({
+      query: (name) => `course/${name}`,
+      providesTags: ['Allc'],
+    }),
   }),
 })
 
 export const { useGetCoursesQuery } = coursesApi
-

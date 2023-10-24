@@ -6,6 +6,7 @@ import { useRegisterMutation } from '../../redux/api/userApi'
 import { setCredentials } from '../../redux/slices/authSlice'
 import { Link } from 'react-router-dom'
 import Logo from '../../assets/Logo.png'
+import { WarnToast } from '../../../../Server/utils/Toasts'
 const SignUp = () => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
@@ -36,6 +37,7 @@ const SignUp = () => {
       dispatch(setCredentials(result.data.admin))
       navigate('/')
     } catch (error) {
+      // WarnToast(`${error}`)    
       console.log(error)
     }
   }

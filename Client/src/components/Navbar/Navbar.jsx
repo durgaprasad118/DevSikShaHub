@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { DarkThemeToggle } from 'flowbite-react'
+// import { DarkThemeToggle } from 'flowbite-react'
 import { NavLink, Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import Logo from '../../assets/Logo.png'
@@ -119,7 +119,11 @@ function Header() {
             ></button>
             <div className="relative ml-3">
               {userInfo ? (
-                <Dropdown></Dropdown>
+                <div className="flex items-center gap-x-2">
+            <Link to={"/addCourse"} type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-md text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add Course</Link>
+ 
+                  <Dropdown></Dropdown>
+                </div>
               ) : (
                 <>
                   <Link
