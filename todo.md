@@ -106,5 +106,4 @@
 - Basic exercises
 - Food
 - Fac and care
-- H2O
-- 
+- H2O water
