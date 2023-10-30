@@ -24,7 +24,7 @@ function CourseForm() {
   if (isLoading) {
     return (
       <h1 className="text-7xl bg-black text-white font-bold mt-36">
-        LOADING...............................
+        LOADING..................
       </h1>
     )
   }
