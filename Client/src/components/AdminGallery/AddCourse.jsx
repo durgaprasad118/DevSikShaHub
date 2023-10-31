@@ -30,7 +30,7 @@ function CourseForm() {
   }
   if (isSuccess) {
     return (
-      <h1 className="text-7xl bg-black text-white font-bold mt-36">Hehe!!</h1>
+      <h1 className="text-7xl bg-black text-white font-bold ">Hehe!!</h1>
     )
   }
   const handleSubmit = async (e) => {
@@ -44,7 +44,7 @@ function CourseForm() {
   }
 
   return (
-    <section className="bg-gray-50 dark:bg-gray-900 mt-20">
+    <section className="bg-gray-50 dark:bg-gray-900 ">
       <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 grid lg:grid-cols-1 place-items-center gap-8 lg:gap-16">
         <div className="w-full lg:max-w-xl p-6 space-y-8 sm:p-8 bg-white rounded-lg shadow-xl dark:bg-gray-800">
           <h2 className="text-2xl font-bold text-gray-900 dark:text-white">

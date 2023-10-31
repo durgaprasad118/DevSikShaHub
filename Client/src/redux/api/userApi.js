@@ -12,6 +12,7 @@ export const userApiSlice = createApi({
         method: 'POST',
         body: data,
       }),
+
     }),
     register: builder.mutation({
       query: (data) => ({
@@ -20,6 +21,7 @@ export const userApiSlice = createApi({
         body: data,
       }),
     }),
+    
   }),
 })
 

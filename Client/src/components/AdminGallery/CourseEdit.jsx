@@ -61,8 +61,8 @@ function CourseEdit({ courseId }) {
   };
 
   return (
-    <div className="py-8 px-4 w-1/2">
-      <div className="w-full lg:max-w-xl p-6 space-y-8 sm:p-8 bg-white rounded-lg shadow-xl dark:bg-gray-800">
+    <div className="py-8 px-4 md:w-1/2 w-full">
+      <div className="w-full max-w-xl p-6 space-y-8 sm:p-8 bg-white rounded-lg shadow-xl dark:bg-gray-800">
         <h2 className="text-2xl font-bold text-center text-gray-900 dark:text-white">
           Update Course
         </h2>
@@ -175,7 +175,7 @@ function CourseEdit({ courseId }) {
           <div className="flex items-center justify-between">
             <button
               type="submit"
-              className="w-full px-5 py-3 text-base font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 sm:w-auto dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              className="block text-white bg-blue-700 hover-bg-blue-800 focus-ring-4 focus-outline-none focus-ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark-bg-blue-600 dark-hover-bg-blue-700 dark-focus-ring-blue-800"
             >
               Update Course
             </button>

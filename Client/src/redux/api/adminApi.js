@@ -23,6 +23,13 @@ export const adminCourseSlice = createApi({
       query: (body) => `course/getCourse/${body}`,
       providesTags:['particularCourse']
     }),
+    updateAdminDetails:builder.mutation({
+      query:(data)=>({
+        url:`admin/profileUpdate`,
+        method:"PUT",
+        body:data,
+      })
+    }),
     addCourse: builder.mutation({
       query: (data) => ({
         url: `course/createCourse`,
@@ -52,6 +59,7 @@ export const adminCourseSlice = createApi({
 export const {
   useAdminCoursesQuery,
   useParticularCourseQuery,
+  useUpdateAdminDetailsMutation,
   useAddCourseMutation,
   useEditCourseMutation,
   useDeleteCourseMutation,

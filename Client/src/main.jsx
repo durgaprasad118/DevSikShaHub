@@ -24,6 +24,7 @@ import AdminGallery from './components/AdminGallery/AdminGallery.jsx'
 import CoursePage from './components/AdminGallery/CoursePage.jsx'
 import CourseForm from './components/AdminGallery/AddCourse.jsx'
 import VerticalTimeline from './components/Roadmaps/Roadmaps.jsx'
+import { AdminUpdate } from './components/adminUpdate/AdminUpdate.jsx'
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route
@@ -59,6 +60,10 @@ const router = createBrowserRouter(
         path="/roadmap"
         element={<VerticalTimeline />}
       ></Route>
+      <Route path='/settings'
+      element={<AdminUpdate/>}
+      >
+      </Route>
     </Route>,
   ),
 )
