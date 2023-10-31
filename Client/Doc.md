@@ -14,3 +14,8 @@
 
 ## navbar 
 - sticky to avoid the below divs going below it
+
+
+## dark mode 
+- navbar colors fixed
+- used flowbite for darkmode

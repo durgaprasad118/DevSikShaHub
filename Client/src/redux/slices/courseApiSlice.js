@@ -8,7 +8,7 @@ export const coursesApi = createApi({
   endpoints: (builder) => ({
     getCourses: builder.query({
       query: (name) => `course/${name}`,
-      providesTags: ['Allc'],
+      providesTags: ['Allcourses'],
     }),
   }),
 })
