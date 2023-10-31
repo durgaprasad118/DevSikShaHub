@@ -14,7 +14,10 @@ const Card = ({
   _id,
 }) => {
   const { userInfo } = useSelector((state) => state.auth)
-  const {id}= userInfo;
+    
+    const {id}= userInfo
+  
+
 
   return (
     <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 hover:scale-[1.03] transition-transform duration-300 ease-out">
@@ -41,11 +44,11 @@ const Card = ({
         <div className="p-2">
           <div className="flex items-center gap-x-2">
             <h1 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-              {title || 'title'}
+              {title }
             </h1>
 
             <span className="bg-blue-100 text-blue-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-blue-900 dark:text-blue-300">
-              {offer || '20'}% off
+              {offer }% off
             </span>
           </div>
 
@@ -56,7 +59,7 @@ const Card = ({
           </div>
 
           <div className="flex items-center justify-between border-t py-5">
-            <span className="text-3xl font-bold text-gray-900 dark:text-white flex items-center">
+            <span className="text-2xl font-bold text-gray-900 dark:text-white flex items-center">
               <FaRupeeSign className="inline" /> {price || 500}
             </span>
 
@@ -77,3 +80,4 @@ const Card = ({
 }
 
 export default Card
+//

@@ -100,7 +100,7 @@ function Header() {
                   About
                 </NavLink>
                 <NavLink
-                  to={'/d'}
+                  to={'/roadmap'}
                   className={({ isActive }) =>
                     ` text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium ${
                       isActive && ` border-b-2 border-blue-600 rounded-t-lg`

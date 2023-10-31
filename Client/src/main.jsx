@@ -22,8 +22,8 @@ import { store } from './redux/store.js'
 import Gallery from './components/CourseGallery/Gallery.jsx'
 import AdminGallery from './components/AdminGallery/AdminGallery.jsx'
 import CoursePage from './components/AdminGallery/CoursePage.jsx'
-import AddCourse from './components/AdminGallery/AddCourse.jsx'
 import CourseForm from './components/AdminGallery/AddCourse.jsx'
+import VerticalTimeline from './components/Roadmaps/Roadmaps.jsx'
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route
@@ -54,6 +54,10 @@ const router = createBrowserRouter(
       <Route
         path="/register"
         element={<SignUp />}
+      ></Route>
+       <Route
+        path="/roadmap"
+        element={<VerticalTimeline />}
       ></Route>
     </Route>,
   ),

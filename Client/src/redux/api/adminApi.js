@@ -21,6 +21,7 @@ export const adminCourseSlice = createApi({
     }),
     particularCourse: builder.query({
       query: (body) => `course/getCourse/${body}`,
+      providesTags:['particularCourse']
     }),
     addCourse: builder.mutation({
       query: (data) => ({
@@ -36,7 +37,7 @@ export const adminCourseSlice = createApi({
         method: 'PUT',
         body: data.formData,
       }),
-      invalidatesTags: ['Courses', 'Allc'],
+      invalidatesTags: ['Courses', 'Allc','particularCourse'],
     }),
     deleteCourse: builder.mutation({
       query: (data) => ({
