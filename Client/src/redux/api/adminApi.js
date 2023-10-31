@@ -1,6 +1,4 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { coursesApi } from "../slices/courseApiSlice";
-
 export const adminCourseSlice = createApi({
   reducerPath: "adminCourse",
   tagTypes: ["Courses"],

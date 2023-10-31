@@ -58,7 +58,7 @@ const Card = ({
 
           <div className="flex items-center justify-between border-t py-5">
             <span className="text-2xl font-bold text-gray-900 dark:text-white flex items-center">
-              <FaRupeeSign className="inline" /> {price || 500}
+              <FaRupeeSign className="inline" /> {price }
             </span>
 
             {userInfo ? (
