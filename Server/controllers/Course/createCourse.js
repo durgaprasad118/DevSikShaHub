@@ -13,7 +13,6 @@ const createCourse = async (req, res) => {
       published,
       admin,
     })
-
     res.status(200).json({
       message: 'Course Created Successfully',
       course: newCourse,

@@ -7,5 +7,4 @@ const adminProfile = async (req, res) => {
   }
   res.status(201).json(admin)
 }
-
 export default adminProfile

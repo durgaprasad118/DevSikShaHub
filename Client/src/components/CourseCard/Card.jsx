@@ -14,16 +14,16 @@ const Card = ({
   _id,
 }) => {
   const { userInfo } = useSelector((state) => state.auth)
-  let id;
-  
-  userInfo? id=userInfo.id:id=1;
+ 
+  let id= userInfo? userInfo.id:1;
   
   return (
-    <div className="max-w-sm relative bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 hover:scale-[1.03] transition-transform duration-300 ease-in-out">
+    <div className="w-80 h-96">
+    <div className="max-w-sm h-full relative bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 hover:scale-[1.03] transition-transform duration-300 ease-in-out">
       <Link to={admin==id?  `/course/${_id}`:`/courses`  }>
         <div className="">
           <img
-            className="rounded-t-lg w-full h-48"
+            className="rounded-t-lg object-cover w-full h-48"
             src={imageLink || altImage}
             alt="Course Image"
             loading="lazy"
@@ -73,6 +73,7 @@ const Card = ({
           </div>
         </div>
       </Link>
+    </div>
     </div>
   )
 }

@@ -3,13 +3,14 @@ import Card from '../CourseCard/Card'
 import { useAdminCoursesQuery } from '../../redux/api/adminApi'
 const AdminGallery = () => {
   const { data, isLoading, isError } = useAdminCoursesQuery('allCourses')
+  const adminCourses = data?.courses ?? [];
    if (isLoading) {
     return <div>Loading....</div>
   }
   
    return (
     <div className="bg-white dark:bg-gray-900 bg-[url('https://flowbite.s3.amazonaws.com/docs/jumbotron/hero-pattern.svg')] dark:bg-[url('https://flowbite.s3.amazonaws.com/docs/jumbotron/hero-pattern-dark.svg')] py-4 grid grid-cols-1  md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 justify-items-center w-full gap-4 p-2 xs:p-0">
-      {data?.courses.map((x) => {
+      {adminCourses.map((x) => {
         return (
           <Card
             key={x._id}
@@ -20,5 +21,4 @@ const AdminGallery = () => {
     </div>
   )
 }
-
 export default AdminGallery

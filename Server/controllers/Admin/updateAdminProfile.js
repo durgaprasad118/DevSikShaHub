@@ -1,5 +1,4 @@
 import Admin from '../../Model/Admin.js'
-import jwt from 'jsonwebtoken'
 import bcrypt from 'bcrypt'
 const updateAdminProfile = async (req, res) => {
   const { name, password } = req.body
@@ -7,7 +6,6 @@ const updateAdminProfile = async (req, res) => {
   const checkPasswordStrength = new RegExp(
     '^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})',
   )
-
   try {
     const admin = await Admin.findById(id)
     if (admin) {

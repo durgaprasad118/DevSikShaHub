@@ -23,7 +23,6 @@ const Login = () => {
     try {
       const result = await login({ email, password })
       if(result.error){
-        // console.log(result.error.data.message);
         ErrorToast(`${result.error.data.message}`)
       }
      localStorage.setItem("token",result.data.token) 

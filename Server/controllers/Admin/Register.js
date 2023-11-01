@@ -3,7 +3,6 @@ import validator from 'validator'
 import Admin from '../../Model/Admin.js'
 import generateToken from '../../utils/generateToken.js'
 
-// Registering an admin
 const register = async (req, res) => {
   const { name, email, password } = req.body
 
@@ -43,7 +42,7 @@ const register = async (req, res) => {
       password: hashedPassword,
     })
 
-    const token = generateToken(res, newAdmin._id) // You need to generate the token here
+    const token = generateToken(res, newAdmin._id) 
     res.status(201).json({
       message: 'Admin Registration Successful',
       token,

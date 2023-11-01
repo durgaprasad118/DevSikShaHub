@@ -11,22 +11,18 @@ export const updateCourse = async (req, res) => {
     if (!course) {
       return res.status(404).json({ message: 'Course not found' })
     }
-
     const updateFields = {}
     updateFields.title = title || course.title
     updateFields.imageLink = imageLink || course.imageLink
     updateFields.description = description || course.description
-
     updateFields.published = published
     updateFields.offer = offer || course.offer
     updateFields.price = price || course.price
-
     const updatedCourse = await Course.findByIdAndUpdate(
       courseId,
       updateFields,
       { new: true },
     )
-
     res
       .status(200)
       .json({ message: 'Course updated successfully', updatedCourse })

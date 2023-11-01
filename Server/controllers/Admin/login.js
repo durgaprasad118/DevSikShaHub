@@ -13,7 +13,6 @@ const login = async (req, res) => {
     return res.status(400).json({
       message: 'Invalid Email',
     })
-
   }
   try {
     const existingAdmin = await Admin.findOne({ email })
