@@ -1,7 +1,5 @@
 import React, { useState } from 'react'
-
 import Panel from './Panel'
-
 const data = [
   {
     title: "Can I get a refund if I'm not satisfied with a course?",
