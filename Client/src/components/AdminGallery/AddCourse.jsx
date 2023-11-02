@@ -37,7 +37,6 @@ function CourseForm() {
     e.preventDefault()
     try {
       const result = await addCourse(formData)
-      console.log(result)
     } catch (error) {
       console.log(error)
     }

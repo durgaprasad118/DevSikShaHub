@@ -27,3 +27,10 @@
   - after isSuccess instead of directly navigating
   - use setTimeout to see the toast 
   - if errror we see the error toasts
+
+
+
+## getting admin Name on course card
+- i have admin Id so 
+  - a route which gets the name of the user using the id
+- MOST IMP _ while getting the data use the data only after **isSuccess or !isLoading**
