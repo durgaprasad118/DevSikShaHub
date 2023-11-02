@@ -2,7 +2,6 @@
 - Docker harkirat video
 - Portfolio with framer motion included
 - DevSikshaHub with full functionality
-
   - Dark mode
   - Skeleton for all the possible in the project
   - Code splitting and lazy loading

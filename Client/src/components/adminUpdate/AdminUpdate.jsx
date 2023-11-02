@@ -1,8 +1,8 @@
 import Logo from "../../assets/Logo.png";
 import React, { useState } from "react";
-import { ErrorToast } from "../../../../Server/utils/Toasts";
 import { useSelector, useDispatch } from "react-redux";
 import { useUpdateAdminDetailsMutation } from "../../redux/api/adminApi";
+import { ErrorToast } from '../../utils/Toasts'
 import { useNavigate } from "react-router-dom";
 import { logOut } from "../../redux/slices/authSlice";
 export const AdminUpdate = () => {
@@ -26,7 +26,6 @@ export const AdminUpdate = () => {
     } catch (error) {
       console.log(error);
     }
-    console.log("Hola");
   };
   return (
     <section className="bg-gray-50 dark:bg-gray-900">

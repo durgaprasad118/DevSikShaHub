@@ -1,45 +1,39 @@
 import React, { useState } from 'react'
-import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
 import { useRegisterMutation } from '../../redux/api/userApi'
-import { setCredentials } from '../../redux/slices/authSlice'
 import { Link } from 'react-router-dom'
 import Logo from '../../assets/Logo.png'
-import { WarnToast } from '../../../../Server/utils/Toasts'
+import { ErrorToast, Sucesstoast } from '../../utils/Toasts'
+import Spinner from '../../utils/Spinner'
 const SignUp = () => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
-
-  const dispatch = useDispatch()
   const navigate = useNavigate()
-  const [register] = useRegisterMutation()
-  const { userInfo } = useSelector((state) => state.auth)
+  const [register, { isLoading, isError, error }] = useRegisterMutation()
 
-  useEffect(() => {
-    if (userInfo) {
-      navigate('/')
-    }
-  }, [navigate, userInfo])
   const submitHandler = async (e) => {
     e.preventDefault()
     try {
       if (password !== confirmPassword) {
-        throw new Error('Password not matched')
+        ErrorToast('Password not matched')
       }
       const result = await register({
         name,
         email,
         password,
       })
-      dispatch(setCredentials(result.data.admin))
-      navigate('/')
+      setTimeout(()=>{
+        navigate('/login')
+      },500)
+      Sucesstoast('Successfully registered, login Now')
     } catch (error) {
-         
       console.log(error)
     }
+  }
+  if (isError) {
+    console.log(error)
   }
   return (
     <section className="bg-gray-50 dark:bg-gray-900">
@@ -165,7 +159,7 @@ const SignUp = () => {
                 type="submit"
                 className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 w-full"
               >
-                Create an account
+                {isLoading ? <Spinner /> : 'Create an account'}
               </button>
               <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                 Already have an account?{' '}

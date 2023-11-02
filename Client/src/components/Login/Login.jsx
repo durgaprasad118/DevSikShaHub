@@ -4,18 +4,22 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useLoginMutation } from '../../redux/api/userApi'
 import { setCredentials } from '../../redux/slices/authSlice'
 import Logo from '../../assets/Logo.png'
-import { ErrorToast, WarnToast } from '../../../../Server/utils/Toasts'
+import { ErrorToast, Sucesstoast } from '../../utils/Toasts'
+import Spinner from '../../utils/Spinner'
 const Login = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  const [login] = useLoginMutation()
+  const [login,{isLoading}] = useLoginMutation()
   const { userInfo } = useSelector((state) => state.auth)
 
   useEffect(() => {
     if (userInfo) {
-      navigate('/')
+      setTimeout(()=>{
+        navigate('/')
+      },500)
+      Sucesstoast("You have successfully logged In")
     }
   }, [navigate, userInfo])
   const submitHandler = async (e) => {
@@ -104,24 +108,24 @@ const Login = () => {
                 </div>
                 <div className="ml-3 text-sm">
                   <label
-                    htmlFor="terms"
+                    htmlfor="terms"
                     className="font-light text-gray-500 dark:text-gray-300"
                   >
-                    I accept the{' '}
+                    i accept the{' '}
                     <a
                       className="font-medium text-primary-600 hover:underline dark:text-primary-500"
                       href="#"
                     >
-                      Terms and Conditions
+                      terms and conditions
                     </a>
                   </label>
                 </div>
               </div>
               <button
                 type="submit"
-                className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 w-full"
+                className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none text-center dark:focus:ring-blue-800 w-full"
               >
-                Login
+                {isLoading ? <Spinner /> : 'Sign in'}
               </button>
               <p className="text-sm font-light text-center text-gray-500 dark:text-gray-400">
                 New?

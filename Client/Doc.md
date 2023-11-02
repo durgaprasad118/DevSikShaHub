@@ -19,3 +19,11 @@
 ## dark mode 
 - navbar colors fixed
 - used flowbite for darkmode
+
+
+
+## Login and Register
+- toasts
+  - after isSuccess instead of directly navigating
+  - use setTimeout to see the toast 
+  - if errror we see the error toasts
