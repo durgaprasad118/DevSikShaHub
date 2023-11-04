@@ -8,8 +8,8 @@ dotenv.config()
 connectDB()
 const app = express()
 app.use(cors())
-app.use(express.json()) //parseJSON
-app.use(express.urlencoded({ extended: true })) //form data
+app.use(express.json()) 
+app.use(express.urlencoded({ extended: true }))
 const port = process.env.PORT || 5000
 
 app.get('/', (req, res) => {
