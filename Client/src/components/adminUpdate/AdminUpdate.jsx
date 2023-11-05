@@ -1,32 +1,34 @@
-import Logo from "../../assets/Logo.png";
-import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { useUpdateAdminDetailsMutation } from "../../redux/api/adminApi";
+import Logo from '../../assets/Logo.png'
+import React, { useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { useUpdateAdminDetailsMutation } from '../../redux/api/adminApi'
 import { ErrorToast } from '../../utils/Toasts'
-import { useNavigate } from "react-router-dom";
-import { logOut } from "../../redux/slices/authSlice";
+import { useNavigate } from 'react-router-dom'
+import { logOut } from '../../redux/slices/authSlice'
+import AdminDelete from './AdminDelete'
 export const AdminUpdate = () => {
-  const [detailsUpdate] = useUpdateAdminDetailsMutation();
-  const { userInfo } = useSelector((state) => state.auth);
-  const navigate = useNavigate();
-  const { name:Admin } = userInfo;
-  const dispatch = useDispatch();
-  const [name, setName] = useState(Admin);
-  const [password, setPassword] = useState("");
+  const [detailsUpdate] = useUpdateAdminDetailsMutation()
+  const { userInfo } = useSelector((state) => state.auth)
+  const navigate = useNavigate()
+  const { name: Admin } = userInfo
+  const { id } = userInfo
+  const dispatch = useDispatch()
+  const [name, setName] = useState(Admin)
+  const [password, setPassword] = useState('')
   const submitHandler = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
     try {
-      const result = await detailsUpdate({ name, password });
+      const result = await detailsUpdate({ name, password })
       if (result.error) {
-        ErrorToast(`${result.error.data.message}`);
+        ErrorToast(`${result.error.data.message}`)
       } else {
-        navigate("/");
-        dispatch(logOut(null));
+        navigate('/')
+        dispatch(logOut(null))
       }
     } catch (error) {
-      console.log(error);
+      console.log(error)
     }
-  };
+  }
   return (
     <section className="bg-gray-50 dark:bg-gray-900">
       <div className=" flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
@@ -34,7 +36,11 @@ export const AdminUpdate = () => {
           href="#"
           className="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white"
         >
-          <img className="w-8 h-8 mr-2" src={Logo} alt="logo" />
+          <img
+            className="w-8 h-8 mr-2"
+            src={Logo}
+            alt="logo"
+          />
           DevSikShaHub
         </a>
         <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
@@ -42,7 +48,10 @@ export const AdminUpdate = () => {
             <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white text-center">
               Update your Details
             </h1>
-            <form className="space-y-4 md:space-y-6" onSubmit={submitHandler}>
+            <form
+              className="space-y-4 md:space-y-6"
+              onSubmit={submitHandler}
+            >
               <div>
                 <label
                   htmlFor="name"
@@ -58,7 +67,6 @@ export const AdminUpdate = () => {
                   onChange={(e) => setName(e.target.value)}
                   className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   placeholder="name@company.com"
-                  
                 />
               </div>
               <div>
@@ -76,7 +84,6 @@ export const AdminUpdate = () => {
                   id="password"
                   placeholder="••••••••"
                   className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  
                 />
               </div>
 
@@ -95,7 +102,7 @@ export const AdminUpdate = () => {
                     htmlFor="terms"
                     className="font-light text-gray-500 dark:text-gray-300"
                   >
-                    I accept the{" "}
+                    I accept the{' '}
                     <a
                       className="font-medium text-primary-600 hover:underline dark:text-primary-500"
                       href="#"
@@ -112,9 +119,11 @@ export const AdminUpdate = () => {
                 Update Detials
               </button>
             </form>
+            <hr />
+            <AdminDelete id={id}></AdminDelete>
           </div>
         </div>
       </div>
     </section>
-  );
-};
+  )
+}

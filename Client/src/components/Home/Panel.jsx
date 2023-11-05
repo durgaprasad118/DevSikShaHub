@@ -8,13 +8,13 @@ const Panel = ({ id, description, title }) => {
     setisActive(isActive === id ? -1 : id)
   }
   return (
-    <div className="flex flex-col gap-y-10  w-1/2    ">
-      <div className="bg-[#161616] text-slate-200 transition  duration-500 ease-in-out rounded-lg">
+    <div className="flex flex-col gap-y-10  md:w-1/2 md:px-0 px-2 ">
+      <div className="  dark:bg-gray-800 dark:border-gray-700 bg-white border border-gray-200  duration-500 ease-in-out rounded-lg text-gray-900 dark:text-white">
         <div
           className="flex flex-row w-full justify-between h-10 p-4 py-8 items-center"
           onClick={() => handleclick(id)}
         >
-          <h1 className="text-lg font-semibold ">{title}</h1>
+          <h1 className="md:text-lg text-md font-semibold ">{title}</h1>
           {isActive === id ? <BiMinus /> : <BiPlus />}
         </div>
 
@@ -27,9 +27,9 @@ const Panel = ({ id, description, title }) => {
               : { maxHeight: '0px' }
           }
           ref={content}
-          className={`max-h-0 overflow-hidden   bg-gray-600  transition-all  duration-500 ease-out rounded-lg`}
+          className={`max-h-0 overflow-hidden   dark:bg-gray-600 bg-gray-200 transition-all  duration-500 ease-out rounded-lg`}
         >
-          <p className="p-3">{description}</p>
+          <p className="p-3 text-xs md:text-lg">{description}</p>
         </div>
       </div>
     </div>

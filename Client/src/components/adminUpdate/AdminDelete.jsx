@@ -1,15 +1,15 @@
-import React, { useState } from 'react'
-import { useDeleteCourseMutation } from '../../redux/api/adminApi'
-import { useNavigate } from 'react-router-dom'
 import { Button, Modal } from 'flowbite-react'
+import { useState } from 'react'
 import { HiOutlineExclamationCircle } from 'react-icons/hi'
-
-export default function DeleteModal({ courseId }) {
-  const navigate = useNavigate()
-  const [deleteCourse, { isSuccess }] = useDeleteCourseMutation()
-
+import { useDeleteAdminMutation } from '../../redux/api/adminApi'
+import { logOut } from '../../redux/slices/authSlice'
+import { useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+function AdminDelete({id}) {
+    const navigate = useNavigate()
+    const dispatch = useDispatch();
+    const [adminDel,{isSuccess}]=useDeleteAdminMutation()
   const [openModal, setOpenModal] = useState(false)
-
   const toggleModal = () => {
     setOpenModal(!openModal)
   }
@@ -17,15 +17,18 @@ export default function DeleteModal({ courseId }) {
   const hideModal = () => {
     setOpenModal(false)
   }
-  isSuccess && navigate('/adminCourses')
+  if(isSuccess){
+    navigate('/')
+    dispatch(logOut(null));
+  }
   return (
     <>
       <button
         onClick={toggleModal}
-        className="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900 "
+        className="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900 w-full "
         type="button"
       >
-        Delete Course
+        Delete Profile
       </button>
       <Modal
         show={openModal}
@@ -39,7 +42,7 @@ export default function DeleteModal({ courseId }) {
           <div className="text-center">
             <HiOutlineExclamationCircle className="mx-auto mb-4 h-14 w-14 text-gray-400 dark:text-gray-200" />
             <h3 className="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">
-              Are you sure you want to delete this Course?
+              Are you sure you want to delete your profile?
             </h3>
             <div className="flex justify-center gap-4">
               <Button
@@ -47,7 +50,7 @@ export default function DeleteModal({ courseId }) {
                 onClick={async () => {
                   hideModal()
                   try {
-                    const result = await deleteCourse(courseId)
+                    const result = await adminDel(id)
                   } catch (error) {
                     console.log(error)
                   }
@@ -68,3 +71,4 @@ export default function DeleteModal({ courseId }) {
     </>
   )
 }
+export default AdminDelete

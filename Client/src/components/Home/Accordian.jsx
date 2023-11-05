@@ -8,7 +8,7 @@ const data = [
     id: 0,
   },
   {
-    title: "How can I search for courses on DevSikShaHub?",
+    title: 'How can I search for courses on DevSikShaHub?',
     description:
       'You can search for courses using the search bar on the homepage. You can also browse through categories and filter results based on your preferences. ',
     id: 1,
@@ -26,7 +26,8 @@ const data = [
     id: 3,
   },
   {
-    title: 'What are the free courses on DevSikShaHub, and how can I access them?    ',
+    title:
+      'What are the free courses on DevSikShaHub, and how can I access them?    ',
     description:
       'We offer a selection of free courses that you can access without any charge. Simply browse our "Free Courses" section to explore and enroll in them.',
     id: 4,
@@ -46,7 +47,8 @@ const Accordian = () => {
   }
 
   return (
-    <div className="h-screen w-full flex flex-col items-center justify-center space-y-4 ">
+    <div className="py-10 w-full flex flex-col items-center justify-center space-y-4 ">
+      <h1 className="md:text-2xl text-gray-900 dark:text-white font-bold" >FAQs</h1>
       {data.map((x) => {
         return (
           <Panel
@@ -54,8 +56,6 @@ const Accordian = () => {
             title={x.title}
             id={x.id}
             description={x.description}
-            // isActive={isActive}
-            // handleclick={handleclick}
           ></Panel>
         )
       })}

@@ -1,22 +1,21 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react'
 import {
   useEditCourseMutation,
   useParticularCourseQuery,
-} from "../../redux/api/adminApi";
-import DeleteModal from "./DeleteModal";
+} from '../../redux/api/adminApi'
+import DeleteModal from './DeleteModal'
 function CourseEdit({ courseId }) {
-  const { data, isSuccess } = useParticularCourseQuery(courseId);
+  const { data, isSuccess } = useParticularCourseQuery(courseId)
   const initialFormData = {
-    title: "",
-    description: "",
-    imageLink: "",
+    title: '',
+    description: '',
+    imageLink: '',
     offer: 0,
     price: 0,
     published: false,
-  };
+  }
 
-  const [formData, setFormData] = useState(initialFormData);
-
+  const [formData, setFormData] = useState(initialFormData)
   useEffect(() => {
     if (isSuccess) {
       setFormData({
@@ -26,39 +25,39 @@ function CourseEdit({ courseId }) {
         offer: data.offer,
         price: data.price,
         published: data.published,
-      });
+      })
     }
-  }, [data, isSuccess]);
+  }, [data, isSuccess])
 
   const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    const newValue = type === "checkbox" ? checked : value;
+    const { name, value, type, checked } = e.target
+    const newValue = type === 'checkbox' ? checked : value
 
     setFormData({
       ...formData,
       [name]: newValue,
-    });
-  };
-  const [editCourse, { isLoading, isError }] = useEditCourseMutation();
+    })
+  }
+  const [editCourse, { isLoading, isError }] = useEditCourseMutation()
   if (isLoading) {
     return (
       <h1 className="text-7xl bg-black text-white font-bold mt-36">
         LOADING.......................................
       </h1>
-    );
+    )
   }
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
     try {
       const result = await editCourse({
         formData,
         courseId,
-      });
-      console.log(result);
+      })
+      console.log(result)
     } catch (error) {
-      console.log(error);
+      console.log(error)
     }
-  };
+  }
 
   return (
     <div className="py-8 px-4 md:w-1/2 w-full">
@@ -66,7 +65,10 @@ function CourseEdit({ courseId }) {
         <h2 className="text-2xl font-bold text-center text-gray-900 dark:text-white">
           Update Course
         </h2>
-        <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
+        <form
+          className="mt-8 space-y-6"
+          onSubmit={handleSubmit}
+        >
           <div>
             <label
               htmlFor="title"
@@ -179,12 +181,12 @@ function CourseEdit({ courseId }) {
             >
               Update Course
             </button>
-            <DeleteModal></DeleteModal>
+            <DeleteModal courseId={courseId}></DeleteModal>
           </div>
         </form>
       </div>
     </div>
-  );
+  )
 }
 
-export default CourseEdit;
+export default CourseEdit

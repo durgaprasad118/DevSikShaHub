@@ -49,14 +49,20 @@ export const adminCourseSlice = createApi({
         method: 'PUT',
         body: data.formData,
       }),
-      invalidatesTags: ['Courses', 'Allcourses', 'particularCourse', 'name'],
+      invalidatesTags: ['Courses', 'Allcourses', 'particularCourse'],
     }),
     deleteCourse: builder.mutation({
       query: (data) => ({
         url: `course/deleteCourse/${data}`,
         method: 'DELETE',
       }),
-      invalidatesTags: ['Courses', 'Allcourses', 'name'],
+      invalidatesTags: ['Courses', 'Allcourses'],
+    }),
+    deleteAdmin:builder.mutation({
+      query:(data)=>({
+        url:`admin/deleteprofile/${data}`,
+        method:'DELETE'
+      })
     }),
     getAdminName: builder.query({
       query: (body) => `admin/adminName/${body}`,
@@ -73,5 +79,9 @@ export const {
   useAddCourseMutation,
   useEditCourseMutation,
   useDeleteCourseMutation,
+  useDeleteAdminMutation,
   useGetAdminNameQuery,
 } = adminCourseSlice
+
+
+

@@ -15,7 +15,7 @@ const Card = ({
   _id,
 }) => {
   const { data, isSuccess } = useGetAdminNameQuery(`${admin}`)
-  let adminName;
+  let adminName
   if (isSuccess) {
     adminName = data.adminName
   }
@@ -23,7 +23,7 @@ const Card = ({
   let id = userInfo ? userInfo.id : 1
   return (
     <div className="w-80 h-96">
-      <div className="max-w-sm h-full relative bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 hover:scale-[1.03] transition-transform duration-300 ease-in-out">
+      <div className="max-w-sm h-full relative bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 text-gray-700 dark:text-gray-400  dark:border-gray-700 hover:scale-[1.03] transition-transform duration-300 ease-in-out">
         <Link to={admin == id ? `/course/${_id}` : `/courses`}>
           <div className="">
             <img
@@ -49,22 +49,28 @@ const Card = ({
                 {title}
               </h1>
 
-              <span className="bg-blue-100 text-blue-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-blue-900 dark:text-blue-300">
-                {offer}% off
-              </span>
+             
             </div>
 
-            <div>
-              <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+            <div className="border-b dark:border-gray-400  border-gray-300">
+              <p className="mb-3 line-clamp-1 font-normal text-gray-400 dark:text-gray-400">
                 {description}
               </p>
-
             </div>
 
-            <div className="flex items-center justify-between border-t py-5">
-              <span className="text-2xl font-bold text-gray-900 dark:text-white flex items-center">
+            <p className="text-gray-600 text-sm pt-1 pl-1 text-left  dark:text-gray-300">
+              {' '}
+              {adminName}
+            </p>
+            <div className="flex items-center justify-between  py-4 ">
+              <div className='flex '>
+              <span className="text-xl font-bold text-gray-900 dark:text-white flex items-center">
                 <FaRupeeSign className="inline" /> {price}
               </span>
+              <span className="bg-blue-100 text-blue-800 text-xs  mr-2 px-2.5 py-0.5 flex items-center rounded-full dark:bg-blue-900 dark:text-blue-300">
+                {offer}% off
+              </span>
+              </div>
               {userInfo ? (
                 <button className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                   Go to Course
