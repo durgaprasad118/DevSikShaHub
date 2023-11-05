@@ -1,5 +1,4 @@
-import mongoose, { mongo } from 'mongoose'
-import Admin from './Admin.js'
+import mongoose  from 'mongoose'
 
 const courseSchema = new mongoose.Schema({
   title: String,
