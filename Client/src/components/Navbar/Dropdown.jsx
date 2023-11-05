@@ -30,11 +30,11 @@ const Dropdown = () => {
       {isOpen && (
         <div className="z-10 absolute right-0 mt-2 py-2 w-44 bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700">
           <ul
-            className="text-sm text-gray-700 dark:text-gray-200"
+            className="text-sm text-gray-700 dark:text-gray-200 text-center"
             aria-labelledby="dropdownDefaultButton"
           >
             <li>
-              <a className="block px-4 py-2  dark:hover:bg-gray-600 dark:hover:text-white">
+              <a className="block px-4 py-2  dark:hover:bg-gray-600 dark:hover:text-white  bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500">
                 {userInfo.name}
               </a>
             </li>
@@ -50,7 +50,7 @@ const Dropdown = () => {
             </li>
             <li>
               <Link
-              to={"/settings"}
+                to={'/settings'}
                 className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                 onClick={closeDropdown}
               >
