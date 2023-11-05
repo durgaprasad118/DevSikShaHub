@@ -13,7 +13,7 @@ function Header() {
     setMobileMenuOpen(!isMobileMenuOpen)
   }
   return (
-    <nav className="bg-gray-50  dark:bg-gray-900 sticky top-0 w-full z-[10000]">
+    <nav className="bg-opacity-40 backdrop-blur-lg bg-gray-100  dark:bg-gray-800 sticky top-0 w-full z-[10000]">
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
         <div className="relative flex h-16 items-center justify-between">
           <div className="absolute inset-y-0 left-0 flex items-center gap-x-1 sm:hidden">

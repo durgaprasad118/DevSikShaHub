@@ -5,9 +5,11 @@ import Carousel from './Carousal'
 const Home = () => {
   return (
     <>
-      <Accordian></Accordian>
-      <Carousel></Carousel>
-      <Features></Features>
+      <div className="   bg-gray-50 dark:bg-gray-900">
+        <Accordian></Accordian>
+        <Carousel></Carousel>
+        <Features></Features>
+      </div>
     </>
   )
 }
