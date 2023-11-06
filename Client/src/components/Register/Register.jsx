@@ -1,17 +1,27 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useRegisterMutation } from '../../redux/api/userApi'
+import { useUserregisterMutation } from '../../redux/api/userFirst'
+
 import { Link } from 'react-router-dom'
 import Logo from '../../assets/Logo.png'
 import { ErrorToast, Sucesstoast } from '../../utils/Toasts'
 import Spinner from '../../utils/Spinner'
+import { useSelector } from 'react-redux'
 const SignUp = () => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
   const navigate = useNavigate()
-  const [register, { isLoading, isError, error }] = useRegisterMutation()
+  const {role} = useSelector(state=> state.role)
+  let registerMutation;
+  if(role=='admin'){
+    registerMutation= useRegisterMutation()
+  }else{
+    registerMutation= useUserregisterMutation();
+  }
+  const [register, { isLoading, isError, error }] = registerMutation
 
   const submitHandler = async (e) => {
     e.preventDefault()

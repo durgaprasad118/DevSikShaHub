@@ -3,13 +3,22 @@ import { useState } from 'react'
 import { HiOutlineExclamationCircle } from 'react-icons/hi'
 import { useDeleteAdminMutation } from '../../redux/api/adminApi'
 import { logOut } from '../../redux/slices/authSlice'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-function AdminDelete({id}) {
-    const navigate = useNavigate()
-    const dispatch = useDispatch();
-    const [adminDel,{isSuccess}]=useDeleteAdminMutation()
+import { useDeleteUserMutation } from '../../redux/api/userProtectedApi'
+
+function AdminDelete({ id }) {
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const { role } = useSelector((state) => state.role)
+  let delteWho ;
+  if(role =='admin'){
+    delteWho= useDeleteAdminMutation()
+  }else{
+    delteWho = useDeleteUserMutation();
+  }
   const [openModal, setOpenModal] = useState(false)
+  const [adminDel, { isSuccess }] = delteWho
   const toggleModal = () => {
     setOpenModal(!openModal)
   }
@@ -17,9 +26,9 @@ function AdminDelete({id}) {
   const hideModal = () => {
     setOpenModal(false)
   }
-  if(isSuccess){
+  if (isSuccess) {
     navigate('/')
-    dispatch(logOut(null));
+    dispatch(logOut(null))
   }
   return (
     <>

@@ -8,7 +8,7 @@ import { FcPlus } from 'react-icons/fc'
 function Header() {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false)
   const { userInfo } = useSelector((state) => state.auth)
-
+  const {role} = useSelector(state=> state.role);
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!isMobileMenuOpen)
   }
@@ -116,13 +116,13 @@ function Header() {
             <div className="relative ml-3">
               {userInfo ? (
                 <div className="flex items-center gap-x-3">
-                  <Link
+                 {role=='admin' &&( <Link
                     to={'/addCourse'}
                     type="button"
                     className="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-md md:text-sm md:px-5 md:py-2.5 px-2 py-1.5 text-xs text-center mr-2  dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 hidden md:block "
                   >
                     Add Course
-                  </Link>
+                  </Link>)}
 
                   <DarkThemeToggle className='block md:hidden'></DarkThemeToggle>
                   <Link to={'/addCourse'}>
@@ -133,20 +133,27 @@ function Header() {
                 </div>
               ) : (
                 <div className="flex items-center">
-                  <Link
+                  {/* <Link
                     to={'/login'}
                     type="button"
                     className={`text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 md:block hidden`}
                   >
                     Login
-                  </Link>
+                  </Link> */}
                   <DarkThemeToggle className="md:hidden block"></DarkThemeToggle>
-                  <Link
+                  {/* <Link
                     to={'/register'}
                     type="button"
                     className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300  md:font-medium  rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
                   >
                     Register
+                  </Link> */}
+                  <Link
+                    to={'/role'}
+                    type="button"
+                    className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300  md:font-medium  rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+                  >
+                    Explore
                   </Link>
                 </div>
               )}

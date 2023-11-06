@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { useLoginMutation } from '../../redux/api/userApi'
+import { useUserloginMutation } from '../../redux/api/userFirst'
 import { setCredentials } from '../../redux/slices/authSlice'
 import Logo from '../../assets/Logo.png'
 import { ErrorToast, Sucesstoast } from '../../utils/Toasts'
@@ -11,8 +12,15 @@ const Login = () => {
   const [password, setPassword] = useState('')
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  const [login,{isLoading}] = useLoginMutation()
   const { userInfo } = useSelector((state) => state.auth)
+  const {role} = useSelector(state=> state.role)
+  let loginMutation;
+  if(role=='admin'){
+    loginMutation= useLoginMutation()
+  }else{
+    loginMutation= useUserloginMutation();
+  }
+  const [login,{isLoading}] = loginMutation
 
   useEffect(() => {
     if (userInfo) {
@@ -30,7 +38,8 @@ const Login = () => {
         ErrorToast(`${result.error.data.message}`)
       }
      localStorage.setItem("token",result.data.token) 
-      dispatch(setCredentials(result.data.Admin))
+     let details = role == 'admin'? result.data.Admin: result.data.User;
+      dispatch(setCredentials(details))
       
     } catch (error) {
       console.log(error)
@@ -61,7 +70,7 @@ const Login = () => {
             >
               <div>
                 <label
-                  htmlFor="email"
+                 
                   className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                 >
                   Your email
@@ -79,7 +88,7 @@ const Login = () => {
               </div>
               <div>
                 <label
-                  htmlFor="password"
+                 
                   className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                 >
                   Password
@@ -108,7 +117,7 @@ const Login = () => {
                 </div>
                 <div className="ml-3 text-sm">
                   <label
-                    htmlfor="terms"
+                    
                     className="font-light text-gray-500 dark:text-gray-300"
                   >
                     i accept the{' '}

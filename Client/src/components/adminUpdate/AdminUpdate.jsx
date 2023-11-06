@@ -2,19 +2,28 @@ import Logo from '../../assets/Logo.png'
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useUpdateAdminDetailsMutation } from '../../redux/api/adminApi'
+import { useUpdateUserDetailsMutation } from '../../redux/api/userProtectedApi'
 import { ErrorToast, Sucesstoast } from '../../utils/Toasts'
 import { useNavigate } from 'react-router-dom'
 import { logOut } from '../../redux/slices/authSlice'
 import AdminDelete from './AdminDelete'
 export const AdminUpdate = () => {
-  const [detailsUpdate] = useUpdateAdminDetailsMutation()
   const { userInfo } = useSelector((state) => state.auth)
+  const {role} = useSelector(state=>state.role);
   const navigate = useNavigate()
   const { name: Admin } = userInfo
   const { id } = userInfo
   const dispatch = useDispatch()
   const [name, setName] = useState(Admin)
   const [password, setPassword] = useState('')
+  
+  let UPdateMuatation;
+  if(role =='admin'){
+    UPdateMuatation = useUpdateAdminDetailsMutation()
+  }else{
+    UPdateMuatation = useUpdateUserDetailsMutation();
+  }
+  const [detailsUpdate] = UPdateMuatation;
   const submitHandler = async (e) => {
     e.preventDefault()
     try {
