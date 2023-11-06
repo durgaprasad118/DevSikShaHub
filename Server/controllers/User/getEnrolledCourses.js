@@ -5,11 +5,12 @@ const enrolledCourses = async(req,res)=>{
     try {
         const userId = req.User._id;
         const user = await User.findById(userId);
-    
         if (!user) {
           return res.status(404).json({ message: 'User not found' });
         }
-        const courses = await Course.find({ _id: { $in: user.Enrolledcourses } });
+        const enrolled = user.Enrolledcourses;
+        console.log(enrolled);
+        const courses = await Course.find({ _id: { $in:enrolled } });
         res.status(200).json({ courses });
       } catch (error) {
         console.error(error);

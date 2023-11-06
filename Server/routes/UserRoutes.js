@@ -8,6 +8,8 @@ import userAuth from '../middleware/UserAuth.js'
 import deleteUser from '../controllers/User/deleteUser.js'
 import EnrollCourse from '../controllers/User/EnrollCourse.js'
 import enrolledCourses from '../controllers/User/getEnrolledCourses.js'
+import particularCourse from '../controllers/User/particularCourse.js'
+import deleteCourse from '../controllers/User/DeleteCourse.js'
 const router = express.Router()
 router.post('/register', register)
 router.post('/login', login)
@@ -16,6 +18,8 @@ router.get('/profile', userAuth, userProfile)
 router.put('/profileUpdate', userAuth, updateUserProfile)
 router.delete('/deleteprofile/:id',userAuth,deleteUser)
 router.post('/enrollCourse',userAuth,EnrollCourse)
-router.get('/enrolledCourses',enrolledCourses)
+router.get('/enrolledCourses',userAuth,enrolledCourses)
+router.get('/particularCourse/:courseId',userAuth,particularCourse);
+router.delete('/deleteCourse/:courseId',userAuth,deleteCourse)
 export default router
 
