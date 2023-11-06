@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
 
-const AdminSchema = new mongoose.Schema({
+const UserSchema = new mongoose.Schema({
     name: {
       type: String,
       required: true,
@@ -16,11 +16,15 @@ const AdminSchema = new mongoose.Schema({
       type: String,
       required: true,
     },
+    Enrolledcourses: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Course', // You can replace 'Course' with the actual model name for courses
+    }],
   },
   {
     timestamps: true,
   },
 )
 
-const User = mongoose.model('User', AdminSchema)
+const User = mongoose.model('User', UserSchema)
 export default User

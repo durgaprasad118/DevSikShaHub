@@ -1,21 +1,22 @@
-import User from '../../Model/User.js'
+import Admin from '../../Model/Admin.js'
 import bcrypt from 'bcrypt'
-const updateUserProfile = async (req, res) => {
+const updateAdminProfile = async (req, res) => {
   const { name, password } = req.body
-  const id = req.User._id
+  
+  const id = req.Admin._id
   const checkPasswordStrength = new RegExp(
     '^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})',
   )
   try {
-    const user = await User.findById(id)
-    if (user) {
+    const admin = await Admin.findById(id)
+    if (admin) {
       if (name) {
         if (name.length < 3) {
           return res.status(400).json({
             message: 'Min length of name should be greater than 3',
           })
         }
-        user.name = name || user.name
+        admin.name = name || admin.name
       }
       if (password) {
         if (!checkPasswordStrength.test(password)) {
@@ -24,16 +25,16 @@ const updateUserProfile = async (req, res) => {
           })
         }
         const hashedPassword = await bcrypt.hash(password, 10)
-        user.password = hashedPassword
+        admin.password = hashedPassword
       }
     }
-    await user.save()
+    await admin.save()
     res.status(200).json({
       message: 'Profile updated Successfully',
-      user: {
-        _id: user._id,
-        name: user.name,
-        email: user.email,
+      admin: {
+        _id: admin._id,
+        name: admin.name,
+        email: admin.email,
       },
     })
   } catch (error) {
@@ -43,4 +44,4 @@ const updateUserProfile = async (req, res) => {
   }
 }
 
-export default updateUserProfile
+export default updateAdminProfile

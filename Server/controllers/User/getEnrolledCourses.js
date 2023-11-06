@@ -1,0 +1,20 @@
+import User from "../../Model/User.js";
+import Course from "../../Model/Courses.js";
+
+const enrolledCourses = async(req,res)=>{
+    try {
+        const userId = req.User._id;
+        const user = await User.findById(userId);
+    
+        if (!user) {
+          return res.status(404).json({ message: 'User not found' });
+        }
+        const courses = await Course.find({ _id: { $in: user.Enrolledcourses } });
+        res.status(200).json({ courses });
+      } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Internal server error' });
+      }
+    
+}
+export default enrolledCourses;
