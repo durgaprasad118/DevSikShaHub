@@ -1,6 +1,7 @@
 import connectDB from './config/connectDB.js'
 import courseRouter from './routes/CourseRoutes.js'
 import adminRouter from './routes/AdminRoutes.js'
+import userRouter from "./routes/UserRoutes.js"
 import express from 'express'
 import dotenv from 'dotenv'
 import cors from 'cors'
@@ -17,6 +18,7 @@ app.get('/', (req, res) => {
 })
 app.use('/admin', adminRouter)
 app.use('/course', courseRouter)
+app.use('/user/',userRouter)
 app.listen(port, () => {
   console.log(`app is listening at ${port}`)
 })

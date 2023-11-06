@@ -1,3 +1,4 @@
+
 import User from '../../Model/User.js'
 import bcrypt from 'bcrypt'
 const updateUserProfile = async (req, res) => {
