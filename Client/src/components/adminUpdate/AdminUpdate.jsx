@@ -2,7 +2,7 @@ import Logo from '../../assets/Logo.png'
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useUpdateAdminDetailsMutation } from '../../redux/api/adminApi'
-import { ErrorToast } from '../../utils/Toasts'
+import { ErrorToast, Sucesstoast } from '../../utils/Toasts'
 import { useNavigate } from 'react-router-dom'
 import { logOut } from '../../redux/slices/authSlice'
 import AdminDelete from './AdminDelete'
@@ -23,6 +23,9 @@ export const AdminUpdate = () => {
         ErrorToast(`${result.error.data.message}`)
       } else {
         navigate('/')
+        setTimeout(()=>{
+          Sucesstoast('Please login Again')
+        },500)
         dispatch(logOut(null))
       }
     } catch (error) {
