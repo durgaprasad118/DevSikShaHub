@@ -1,8 +1,8 @@
 import Footer from './components/Footer/Footer'
 import { Outlet } from 'react-router-dom'
 import Header from './components/Navbar/Navbar'
-function App() {
-   return (
+const App = () => {
+  return (
     <>
       <Header></Header>
       <Outlet></Outlet>
