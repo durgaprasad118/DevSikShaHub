@@ -1,7 +1,7 @@
 import express from 'express'
-import { register } from '../controllers/User/Register.js'
 import userName from '../controllers/User/username.js'
-import { login } from '../controllers/User/login.js'
+import { register } from '../controllers/User/Register.js'
+import {login} from "../controllers/User/Login.js"
 import userProfile from '../controllers/User/profile.js'
 import updateUserProfile from '../controllers/User/updateProfile.js'
 import userAuth from '../middleware/UserAuth.js'

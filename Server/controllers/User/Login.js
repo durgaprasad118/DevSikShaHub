@@ -1,4 +1,3 @@
-
 import bcrypt from 'bcrypt'
 import validator from 'validator'
 import User from '../../Model/User.js'
