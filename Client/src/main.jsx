@@ -4,7 +4,6 @@ import App from './App.jsx'
 import './index.css'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-
 import { DarkThemeToggle, Flowbite } from 'flowbite-react'
 import {
   createRoutesFromElements,
@@ -13,9 +12,10 @@ import {
   createBrowserRouter,
 } from 'react-router-dom'
 import Home from './components/Home/Home.jsx'
+import Cart from './components/UserDashboard/Cart.jsx'
 import Login from './components/Login/Login.jsx'
 import SignUp from './components/Register/Register.jsx'
-
+import UserCOursePage from './components/UserDashboard/CoursePage.jsx'
 import { Provider } from 'react-redux'
 import { store } from './redux/store.js'
 import Gallery from './components/CourseGallery/Gallery.jsx'
@@ -71,6 +71,16 @@ const router = createBrowserRouter(
         path="/settings"
         element={<AdminUpdate />}
       ></Route>
+      <Route
+      path='/usercourse'
+      element={<UserCOursePage/>}
+      >
+      </Route>
+      <Route path='/cart'
+      element={<Cart/>}
+      >
+
+      </Route>
     </Route>,
   ),
 )

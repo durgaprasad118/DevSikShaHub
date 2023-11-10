@@ -5,10 +5,17 @@ import { useSelector } from 'react-redux'
 import Logo from '../../assets/Logo.png'
 import Dropdown from './Dropdown'
 import { FcPlus } from 'react-icons/fc'
+import { BsCartPlus } from 'react-icons/bs'
+import { useGetCartQuery } from '../../redux/Cart/Usercart'
 function Header() {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false)
   const { userInfo } = useSelector((state) => state.auth)
-  const {role} = useSelector(state=> state.role);
+  let length = 0
+  const { data, isLoading } = useGetCartQuery()
+  if (!isLoading) {
+    length = data.courses.length
+  }
+  const { role } = useSelector((state) => state.role)
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!isMobileMenuOpen)
   }
@@ -116,19 +123,31 @@ function Header() {
             <div className="relative ml-3">
               {userInfo ? (
                 <div className="flex items-center gap-x-3">
-                 {role=='admin' &&( <Link
-                    to={'/addCourse'}
-                    type="button"
-                    className="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-md md:text-sm md:px-5 md:py-2.5 px-2 py-1.5 text-xs text-center mr-2  dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 hidden md:block "
-                  >
-                    Add Course
-                  </Link>)}
+                  {role == 'admin' && (
+                    <Link
+                      to={'/addCourse'}
+                      type="button"
+                      className="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-md md:text-sm md:px-5 md:py-2.5 px-2 py-1.5 text-xs text-center mr-2  dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 hidden md:block "
+                    >
+                      Add Course
+                    </Link>
+                  )}
 
-                  <DarkThemeToggle className='block md:hidden'></DarkThemeToggle>
+                  <DarkThemeToggle className="block md:hidden"></DarkThemeToggle>
                   <Link to={'/addCourse'}>
-                  { role=='admin' && <FcPlus className="text-2xl block md:hidden"></FcPlus>}
+                    {role == 'admin' && (
+                      <FcPlus className="text-2xl block md:hidden"></FcPlus>
+                    )}
                   </Link>
-
+                  <Link
+                    to={'/cart'}
+                    className="flex gap-x-1"
+                  >
+                    {
+                      <BsCartPlus className="dark:text-gray-50 text-gray-900 md:text-2xl text-xl font-bold " />
+                    }
+                    <p className="dark:text-gray-50 text-gray-900 text-lg">{`(${length})`}</p>
+                  </Link>
                   <Dropdown></Dropdown>
                 </div>
               ) : (
@@ -153,19 +172,19 @@ function Header() {
         id="mobile-menu"
       >
         <div className="space-y-1 px-2 pb-3 pt-2">
-          <div className='flex items-center justify-center gap-x-1'>
-          <img
-                className="h-8 w-auto"
-                src={Logo}
-                alt="Your Company"
-              />
-          <h1
-            className="text-center bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500 font-bold
+          <div className="flex items-center justify-center gap-x-1">
+            <img
+              className="h-8 w-auto"
+              src={Logo}
+              alt="Your Company"
+            />
+            <h1
+              className="text-center bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500 font-bold
             "
             >
-            DevSikShaHub
-          </h1>
-            </div>
+              DevSikShaHub
+            </h1>
+          </div>
           <NavLink
             to={'/'}
             onClick={() => toggleMobileMenu()}
