@@ -10,7 +10,7 @@ const connectDB = async () => {
   } catch (error) {
     console.log(`Error :${error.message}`)
     console.log('DB connection falied')
-    process.exit(1) // exit with failed code
+    process.exit(1) 
   }
 }
 

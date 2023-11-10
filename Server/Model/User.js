@@ -18,8 +18,14 @@ const UserSchema = new mongoose.Schema({
     },
     Enrolledcourses: [{
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Course', // You can replace 'Course' with the actual model name for courses
+      ref: 'Course', 
     }],
+    Store:[
+      {
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'Course',
+      }
+    ]
   },
   {
     timestamps: true,

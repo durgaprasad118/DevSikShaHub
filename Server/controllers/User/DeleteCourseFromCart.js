@@ -7,13 +7,12 @@ import User from '../../Model/User.js';
     if (!user) {
       return res.status(404).json({ message: 'User not found' });
     }
-
     const courseId = req.params.courseId;
-    const courseIndex = user.Enrolledcourses.indexOf(courseId);
+    const courseIndex = user.Store.indexOf(courseId);
     if(courseIndex==-1){
         return res.status(404).json({ message: 'User is not enrolled in the course' });
     }
-    user.Enrolledcourses.splice(courseIndex, 1);
+    user.Store.splice(courseIndex, 1);
     await user.save();
     res.status(200).json({ message: 'Course deleted successfully' });
   } catch (error) {
