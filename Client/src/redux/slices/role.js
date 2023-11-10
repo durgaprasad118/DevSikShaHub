@@ -2,11 +2,12 @@ import { createSlice } from '@reduxjs/toolkit'
 const Role = createSlice({
   name: 'role',
   initialState: {
-    role: "admin",
+    role:localStorage.getItem('role') ||"admin" 
   },
   reducers: {
     setRole: (state, action) => {
-      state.role = action.payload
+      state.role = action.payload,
+      localStorage.setItem('role',action.payload)
     },
   },
 })

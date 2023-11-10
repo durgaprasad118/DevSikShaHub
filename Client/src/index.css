@@ -10,3 +10,6 @@ font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans
 html {
   scroll-behavior: smooth;
 }
+.w-fit{
+  width: 100%;
+}

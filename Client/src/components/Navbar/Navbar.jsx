@@ -9,6 +9,7 @@ function Header() {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false)
   const { userInfo } = useSelector((state) => state.auth)
   const {role} = useSelector(state=> state.role);
+  console.log(role);
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!isMobileMenuOpen)
   }

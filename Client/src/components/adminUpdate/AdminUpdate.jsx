@@ -7,23 +7,25 @@ import { ErrorToast, Sucesstoast } from '../../utils/Toasts'
 import { useNavigate } from 'react-router-dom'
 import { logOut } from '../../redux/slices/authSlice'
 import AdminDelete from './AdminDelete'
+import { Button, Tooltip } from 'flowbite-react'
+import '../../index.css'
 export const AdminUpdate = () => {
   const { userInfo } = useSelector((state) => state.auth)
-  const {role} = useSelector(state=>state.role);
+  const { role } = useSelector((state) => state.role)
   const navigate = useNavigate()
   const { name: Admin } = userInfo
   const { id } = userInfo
   const dispatch = useDispatch()
   const [name, setName] = useState(Admin)
   const [password, setPassword] = useState('')
-  
-  let UPdateMuatation;
-  if(role =='admin'){
+
+  let UPdateMuatation
+  if (role == 'admin') {
     UPdateMuatation = useUpdateAdminDetailsMutation()
-  }else{
-    UPdateMuatation = useUpdateUserDetailsMutation();
+  } else {
+    UPdateMuatation = useUpdateUserDetailsMutation()
   }
-  const [detailsUpdate] = UPdateMuatation;
+  const [detailsUpdate] = UPdateMuatation
   const submitHandler = async (e) => {
     e.preventDefault()
     try {
@@ -32,9 +34,9 @@ export const AdminUpdate = () => {
         ErrorToast(`${result.error.data.message}`)
       } else {
         navigate('/')
-        setTimeout(()=>{
+        setTimeout(() => {
           Sucesstoast('Please login Again')
-        },500)
+        }, 500)
         dispatch(logOut(null))
       }
     } catch (error) {
@@ -124,12 +126,16 @@ export const AdminUpdate = () => {
                   </label>
                 </div>
               </div>
-              <button
-                type="submit"
-                className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 w-full"
-              >
-                Update Detials
-              </button>
+              <div>
+                <Tooltip content="Clicking this makes you logOut">
+                  <button
+                    type="submit"
+                    className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 w-full"
+                  >
+                    Update Detials
+                  </button>
+                </Tooltip>
+              </div>
             </form>
             <hr />
             <AdminDelete id={id}></AdminDelete>
