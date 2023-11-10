@@ -1,15 +1,28 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import {
   useGetCartQuery,
   useDeleteItemMutation,
   useEmptyCartMutation,
+  useEnrollCourseMutation,
 } from '../../redux/Cart/Usercart'
 import { Table } from 'flowbite-react'
+import { Sucesstoast, WarnToast } from '../../utils/Toasts'
 const Cart = () => {
   const { data, isLoading } = useGetCartQuery()
   const [deleteItem] = useDeleteItemMutation()
   const [emptyCart] = useEmptyCartMutation()
+  const [enrollCourse, { isSuccess: successfullyEnrolled }] =
+    useEnrollCourseMutation()
+
+  useEffect(() => {
+    if (successfullyEnrolled) {
+      Sucesstoast('Successfully enrolled')
+      ;(async () => {
+        await emptyCart()
+      })()
+    }
+  }, [successfullyEnrolled])
   let cart = []
   if (!isLoading) {
     cart = data.courses
@@ -75,7 +88,7 @@ const Cart = () => {
         </div>
       ) : (
         <>
-          <h1 className="mb-4 text-xl font-extrabold tracking-tight leading-none md:text-4xl">
+          <h1 className="mb-4 text-xl text-gray-800 dark:text-gray-50 font-extrabold tracking-tight leading-none md:text-4xl">
             Your cart is empty purchase your desired course{' '}
             {
               <Link
@@ -89,9 +102,21 @@ const Cart = () => {
         </>
       )}
       <div className="w-full py-4 md:px-10 px-0 flex justify-end items-center">
-        <div className='bg-white border h-40  flex flex-col justify-center items-center gap-y-4 border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 w-1/2'>
-              <h1 className='text-left' >{`Grand Total: ${price}`}</h1>
-              <button type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 w-3/4">Purchase</button>
+        <div className="bg-white border h-40  flex flex-col justify-center items-center gap-y-4 border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 w-1/2">
+          <h1 className="text-left dark:text-gray-50 text-gray-800">{`Grand Total: ${price}`}</h1>
+          <button
+            onClick={async () => {
+              try {
+                const result = enrollCourse()
+              } catch (error) {
+                console.log(error)
+              }
+            }}
+            type="button"
+            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 w-3/4"
+          >
+            Purchase
+          </button>
         </div>
       </div>
       <div className="py-4 text-center ">

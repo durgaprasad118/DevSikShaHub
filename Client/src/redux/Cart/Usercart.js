@@ -38,7 +38,18 @@ export const userCart = createApi({
         method:'DELETE'
        }) ,
        invalidatesTags:['cart']
+    }),
+    EnrollCourse:builder.mutation({
+        query:(data)=>({
+            url:'user/enrollCourse',
+            method:'POST',
+        }),
+        invalidatesTags:['EnrolledCourses']
+    }),
+    getEnrolledCourses:builder.query({
+        query:(body)=>'',
+        providesTags:['EnrolledCourses']
     })
   })
 })
-export const {useAddToCartMutation,useGetCartQuery,useDeleteItemMutation,useEmptyCartMutation} = userCart
+export const {useAddToCartMutation,useGetCartQuery,useDeleteItemMutation,useEmptyCartMutation,useEnrollCourseMutation} = userCart
