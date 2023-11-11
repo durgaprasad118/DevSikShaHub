@@ -3,7 +3,7 @@ export const userSlice = createApi({
   reducerPath: 'userSlive',
   tagTypes: ['userDetails'],
   baseQuery: fetchBaseQuery({
-    baseUrl: 'http://localhost:8000/',
+    baseUrl: 'https://dsh-nrlt.onrender.com',
     prepareHeaders: (headers) => {
       const token = localStorage.getItem('token')
       if (token) {

@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 export const userFirstApiSlice = createApi({
   reducerPath: 'userarpi',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'http://localhost:8000/',
+    baseUrl: 'https://dsh-nrlt.onrender.com',
   }),
   tagTypes: ['UUser'],
   endpoints: (builder) => ({
