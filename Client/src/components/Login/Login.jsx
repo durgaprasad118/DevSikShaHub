@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate ,useLocation} from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { useLoginMutation } from '../../redux/api/userApi'
 import { useUserloginMutation } from '../../redux/api/userFirst'
 import { setCredentials } from '../../redux/slices/authSlice'
 import Logo from '../../assets/Logo.png'
 import { ErrorToast, Sucesstoast } from '../../utils/Toasts'
+import { useAddToCartMutation } from '../../redux/Cart/Usercart'
 import Spinner from '../../utils/Spinner'
 const Login = () => {
   const [email, setEmail] = useState('')
@@ -20,9 +21,14 @@ const Login = () => {
   }else{
     loginMutation= useUserloginMutation();
   }
-  const [login,{isLoading}] = loginMutation
+  const location = useLocation();
 
+  const [login,{isLoading}] = loginMutation
+  const [cart]= useAddToCartMutation();
   useEffect(() => {
+    if(role==='user' && location.pathname=='/' ){
+      cart();
+    }
     if (userInfo) {
       setTimeout(()=>{
         navigate('/')

@@ -72,7 +72,7 @@ const router = createBrowserRouter(
         element={<AdminUpdate />}
       ></Route>
       <Route
-      path='/usercourse'
+      path='/usercourse/:courseId'
       element={<UserCOursePage/>}
       >
       </Route>

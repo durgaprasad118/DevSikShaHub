@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { DarkThemeToggle } from 'flowbite-react'
 import { NavLink, Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
@@ -6,16 +6,12 @@ import Logo from '../../assets/Logo.png'
 import Dropdown from './Dropdown'
 import { FcPlus } from 'react-icons/fc'
 import { BsCartPlus } from 'react-icons/bs'
-import { useGetCartQuery } from '../../redux/Cart/Usercart'
-function Header() {
+
+const Header = () => {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false)
   const { userInfo } = useSelector((state) => state.auth)
-  let length = 0
-  const { data, isLoading } = useGetCartQuery()
-  if (!isLoading) {
-    length = data.courses.length
-  }
   const { role } = useSelector((state) => state.role)
+  const {cartLength} = useSelector((state)=>state.cartlength) 
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!isMobileMenuOpen)
   }
@@ -139,15 +135,17 @@ function Header() {
                       <FcPlus className="text-2xl block md:hidden"></FcPlus>
                     )}
                   </Link>
-                  <Link
-                    to={'/cart'}
-                    className="flex gap-x-1"
-                  >
-                    {
-                      <BsCartPlus className="dark:text-gray-50 text-gray-900 md:text-2xl text-xl font-bold " />
-                    }
-                    <p className="dark:text-gray-50 text-gray-900 text-lg">{`(${length})`}</p>
-                  </Link>
+                  {role === 'user' && (
+                    <Link
+                      to={'/cart'}
+                      className="flex gap-x-1"
+                    >
+                      {
+                        <BsCartPlus className="dark:text-gray-50 text-gray-900 md:text-2xl text-xl font-bold " />
+                      }
+                      <p className="dark:text-gray-50 text-gray-900 text-lg">{`(${cartLength})`}</p>
+                    </Link>
+                  )}
                   <Dropdown></Dropdown>
                 </div>
               ) : (

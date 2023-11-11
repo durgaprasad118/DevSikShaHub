@@ -47,9 +47,12 @@ export const userCart = createApi({
         invalidatesTags:['EnrolledCourses']
     }),
     getEnrolledCourses:builder.query({
-        query:(body)=>'',
+        query:(body)=>'user/enrolledCourses',
         providesTags:['EnrolledCourses']
+    }),
+    getParticularCourse:builder.query({
+        query:(body)=> `user/particularCourse/${body}`
     })
   })
 })
-export const {useAddToCartMutation,useGetCartQuery,useDeleteItemMutation,useEmptyCartMutation,useEnrollCourseMutation} = userCart
+export const {useAddToCartMutation,useGetCartQuery,useDeleteItemMutation,useEmptyCartMutation,useEnrollCourseMutation,useGetEnrolledCoursesQuery,useGetParticularCourseQuery} = userCart

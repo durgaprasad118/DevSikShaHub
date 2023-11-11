@@ -8,7 +8,10 @@ import {
 } from '../../redux/Cart/Usercart'
 import { Table } from 'flowbite-react'
 import { Sucesstoast, WarnToast } from '../../utils/Toasts'
+import { useDispatch } from 'react-redux'
+import { setcartLength,resetLength } from '../../redux/slices/cartLength'
 const Cart = () => {
+  const dispatch = useDispatch();
   const { data, isLoading } = useGetCartQuery()
   const [deleteItem] = useDeleteItemMutation()
   const [emptyCart] = useEmptyCartMutation()
@@ -33,19 +36,15 @@ const Cart = () => {
   }, 0)
   return (
     <div className="w-full  mx-auto  dark:bg-gray-900  text-gray-800">
-      <h1 className="text-lg font-bold py-4 xl:text-xl text-center bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-50">
+      <h1 className="text-lg font-bold py-4 xl:text-xl text-center bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-50 border-b-2 border-gray-100 dark:border-gray-800">
         Your Cart
       </h1>
       {cart.length > 0 ? (
-        <div className="w-full dark:bg-gray-900 px-0 md:px-10 text-gray-800">
-          <Table hoverable>
+        <div className="w-full dark:bg-gray-900 px-2 md:px-10 text-gray-800">
+          <Table hoverable >
             <Table.Head>
-              <Table.HeadCell></Table.HeadCell>
-              <Table.HeadCell>Course Name</Table.HeadCell>
-              <Table.HeadCell>Price</Table.HeadCell>
-              <Table.HeadCell>Offer</Table.HeadCell>
-              <Table.HeadCell>Teacher</Table.HeadCell>
-              <Table.HeadCell></Table.HeadCell>
+              <Table.HeadCell className='md:text-lg text-md'>Course Name</Table.HeadCell>
+              <Table.HeadCell className='md:text-lg text-md'>Price</Table.HeadCell>
               <Table.HeadCell>
                 <span className="sr-only">Edit</span>
               </Table.HeadCell>
@@ -57,25 +56,23 @@ const Cart = () => {
                     key={course._id}
                     className="bg-white dark:border-gray-700 dark:bg-gray-800"
                   >
-                    <Table.Cell></Table.Cell>
-                    <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
+                    <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white text-lg">
                       {course.title}
                     </Table.Cell>
-                    <Table.Cell>{course.price}</Table.Cell>
-                    <Table.Cell>{course.offer}</Table.Cell>
-                    <Table.Cell>{'hola'}</Table.Cell>
-                    <Table.Cell></Table.Cell>
+                    <Table.Cell className='text-lg'>{course.price}</Table.Cell>
                     <Table.Cell>
                       <button
                         onClick={async () => {
                           try {
                             const result = deleteItem(course._id)
+                            dispatch(setcartLength(-1))
                           } catch (error) {
                             console.log(error)
                           }
                         }}
                         type="button"
-                        className="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+                        className="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 
+                         dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
                       >
                         Delete
                       </button>
@@ -88,7 +85,7 @@ const Cart = () => {
         </div>
       ) : (
         <>
-          <h1 className="mb-4 text-xl text-gray-800 dark:text-gray-50 font-extrabold tracking-tight leading-none md:text-4xl">
+          <h1 className="py-4 text-xl text-gray-800 dark:text-gray-50 font-extrabold tracking-tight leading-none md:text-4xl">
             Your cart is empty purchase your desired course{' '}
             {
               <Link
@@ -101,13 +98,14 @@ const Cart = () => {
           </h1>
         </>
       )}
-      <div className="w-full py-4 md:px-10 px-0 flex justify-end items-center">
-        <div className="bg-white border h-40  flex flex-col justify-center items-center gap-y-4 border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 w-1/2">
+     {cart.length>0 && <div className="w-full py-4 md:px-10 px-2 flex justify-end items-center">
+        <div className="bg-white border md:h-40 h-32  flex flex-col justify-center items-center gap-y-4 border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 md:w-1/2 w-full">
           <h1 className="text-left dark:text-gray-50 text-gray-800">{`Grand Total: ${price}`}</h1>
           <button
             onClick={async () => {
               try {
                 const result = enrollCourse()
+                dispatch(resetLength())
               } catch (error) {
                 console.log(error)
               }
@@ -118,13 +116,14 @@ const Cart = () => {
             Purchase
           </button>
         </div>
-      </div>
-      <div className="py-4 text-center ">
+      </div>}
+     { cart.length>0 && <div className="py-4 text-center ">
         <button
           type="button"
           onClick={async () => {
             try {
               const result = emptyCart()
+              dispatch(resetLength())
             } catch (error) {
               console.log(error)
             }
@@ -133,7 +132,7 @@ const Cart = () => {
         >
           Empty the Cart
         </button>
-      </div>
+      </div>}
     </div>
   )
 }

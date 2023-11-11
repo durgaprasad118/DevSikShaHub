@@ -3,6 +3,7 @@ import { setupListeners } from '@reduxjs/toolkit/query'
 import { userApiSlice } from './api/userApi'
 import authReducer from './slices/authSlice'
 import roleReducer from './slices/role'
+import cartReducer from './slices/cartLength'
 import { adminCourseSlice } from './api/adminApi'
 import { userFirstApiSlice } from './api/userFirst'
 import { userCart } from './Cart/Usercart'
@@ -11,6 +12,7 @@ export const store = configureStore({
   reducer: {
     auth: authReducer,
     role: roleReducer,
+    cartlength:cartReducer,
     [userApiSlice.reducerPath]: userApiSlice.reducer,
     [adminCourseSlice.reducerPath]: adminCourseSlice.reducer,
     [userFirstApiSlice.reducerPath]:userFirstApiSlice.reducer,
