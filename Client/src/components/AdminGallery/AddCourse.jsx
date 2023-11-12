@@ -42,8 +42,14 @@ function CourseForm() {
   if (isSuccess) {
     setTimeout(() => {
       navigate('/adminCourses')
-      Sucesstoast('Course created Successfully!')
     }, 10)
+    return (
+      <div className="flex items-center bg-gray-50 dark:bg-gray-900 justify-center h-[60vh]">
+        <h1 className="md:text-7xl text-xl bg-black text-white font-bold p-4 rounded-lg shadow-lg text-center">
+          Course Created Successfully
+        </h1>
+      </div>
+    )
   }
 
   const handleSubmit = async (e) => {
