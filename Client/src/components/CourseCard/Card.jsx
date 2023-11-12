@@ -7,6 +7,7 @@ import { useGetAdminNameQuery } from '../../redux/api/adminApi'
 import { useAddToCartMutation } from '../../redux/Cart/Usercart'
 import { useGetEnrolledCoursesQuery } from '../../redux/Cart/Usercart'
 import { setcartLength } from '../../redux/slices/cartLength'
+import {Sucesstoast} from "../../utils/Toasts"
 const Card = ({
   title,
   description,

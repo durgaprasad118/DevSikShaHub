@@ -8,7 +8,7 @@ const Explore = () => {
   const dispatch = useDispatch()
   const [a, setA] = useState(role)
   return (
-    <div className='bg-gray-50 dark:bg-gray-900'>
+    <div className='bg-gray-50 dark:bg-gray-900 h-[60vh]'>
       <Button.Group outline>
         <Button
           onClick={() => {

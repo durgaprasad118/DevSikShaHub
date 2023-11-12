@@ -1,7 +1,9 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useAddCourseMutation } from '../../redux/api/adminApi'
-
+import { Sucesstoast } from '../../utils/Toasts'
+import { useNavigate } from 'react-router-dom'
 function CourseForm() {
+  const navigate = useNavigate()
   const [formData, setFormData] = useState({
     title: '',
     description: '',
@@ -23,16 +25,27 @@ function CourseForm() {
   const [addCourse, { isLoading, isSuccess, isError }] = useAddCourseMutation()
   if (isLoading) {
     return (
-      <h1 className="text-7xl bg-black text-white font-bold ">
-        LOADING........................
-      </h1>
+      <div className="py-8 px-4 mx-auto max-w-screen-xl   lg:py-16 grid lg:grid-cols-1 place-items-center gap-8 lg:gap-16">
+        <div className="max-w-sm animate-pulse h-full">
+          <div className="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-48 mb-4"></div>
+          <div className="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[360px] mb-2.5"></div>
+          <div className="h-2 bg-gray-200 rounded-full dark:bg-gray-700 mb-2.5"></div>
+          <div className="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[330px] mb-2.5"></div>
+          <div className="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[300px] mb-2.5"></div>
+          <div className="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[360px]"></div>
+          <span className="sr-only">Loading...</span>
+        </div>
+      </div>
     )
   }
+
   if (isSuccess) {
-    return (
-      <h1 className="text-7xl bg-black text-white font-bold ">Hehe!!</h1>
-    )
+    setTimeout(() => {
+      navigate('/adminCourses')
+      Sucesstoast('Course created Successfully!')
+    }, 10)
   }
+
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
