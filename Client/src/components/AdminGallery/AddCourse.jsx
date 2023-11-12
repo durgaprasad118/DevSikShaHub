@@ -25,7 +25,7 @@ function CourseForm() {
   const [addCourse, { isLoading, isSuccess, isError }] = useAddCourseMutation()
   if (isLoading) {
     return (
-      <div className="py-8 px-4 mx-auto max-w-screen-xl   lg:py-16 grid lg:grid-cols-1 place-items-center gap-8 lg:gap-16">
+      <div className="py-8 px-4 mx-auto max-w-screen-xl   lg:py-16 grid lg:grid-cols-1 place-items-center gap-8 lg:gap-16  dark:bg-gray-900 bg-[url('https://flowbite.s3.amazonaws.com/docs/jumbotron/hero-pattern.svg')] dark:bg-[url('https://flowbite.s3.amazonaws.com/docs/jumbotron/hero-pattern-dark.svg')] bg-blend-multiply text-gray-800 dark:text-gray-50">
         <div className="max-w-sm animate-pulse h-full">
           <div className="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-48 mb-4"></div>
           <div className="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[360px] mb-2.5"></div>

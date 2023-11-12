@@ -2,7 +2,7 @@ import React from 'react'
 import logo from '../../assets/Logo.png'
 const Footer = () => {
   return (
-    <footer className="bg-gray-50 dark:bg-gray-900 w-full ">
+    <footer className="dark:bg-gray-900 bg-[url('https://flowbite.s3.amazonaws.com/docs/jumbotron/hero-pattern.svg')] dark:bg-[url('https://flowbite.s3.amazonaws.com/docs/jumbotron/hero-pattern-dark.svg')] bg-blend-multiply text-gray-800 dark:text-gray-50 w-full ">
       <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
         <div className="md:flex md:justify-between">
           <div className="mb-6 md:mb-0">

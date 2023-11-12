@@ -35,7 +35,7 @@ const Cart = () => {
     return ac
   }, 0)
   return (
-    <div className="w-full  mx-auto  dark:bg-gray-900  text-gray-800">
+    <div className="w-full  mx-auto dark:bg-gray-900 bg-[url('https://flowbite.s3.amazonaws.com/docs/jumbotron/hero-pattern.svg')] dark:bg-[url('https://flowbite.s3.amazonaws.com/docs/jumbotron/hero-pattern-dark.svg')] bg-blend-multiply text-gray-800 dark:text-gray-50">
       <h1 className="text-lg font-bold py-4 xl:text-xl text-center bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-50 border-b-2 border-gray-100 dark:border-gray-800">
         Your Cart
       </h1>

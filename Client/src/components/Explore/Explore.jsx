@@ -8,7 +8,7 @@ const Explore = () => {
   const dispatch = useDispatch()
   const [a, setA] = useState(role)
   return (
-    <div className='bg-gray-50 dark:bg-gray-900 h-[60vh]'>
+    <div className=" dark:bg-gray-900 bg-[url('https://flowbite.s3.amazonaws.com/docs/jumbotron/hero-pattern.svg')] dark:bg-[url('https://flowbite.s3.amazonaws.com/docs/jumbotron/hero-pattern-dark.svg')] bg-blend-multiply text-gray-800 dark:text-gray-50h-[60vh]"> 
       <Button.Group outline>
         <Button
           onClick={() => {
