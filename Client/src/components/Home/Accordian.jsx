@@ -47,18 +47,21 @@ const Accordian = () => {
   }
 
   return (
-    <div className="py-10 w-full flex flex-col items-center justify-center space-y-4 ">
-      <h1 className="md:text-2xl text-gray-900 dark:text-white font-bold" >FAQs</h1>
+    <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 ">
+      <div className='flex justify-center flex-col items-center gap-y-2'>
+
+      <h1 className="md:text-3xl text-gray-900 dark:text-white font-bold" >FAQs</h1>
       {data.map((x) => {
         return (
           <Panel
-            key={x.id}
-            title={x.title}
-            id={x.id}
-            description={x.description}
+          key={x.id}
+          title={x.title}
+          id={x.id}
+          description={x.description}
           ></Panel>
-        )
-      })}
+          )
+        })}
+        </div>
     </div>
   )
 }

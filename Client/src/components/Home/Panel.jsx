@@ -8,7 +8,7 @@ const Panel = ({ id, description, title }) => {
     setisActive(isActive === id ? -1 : id)
   }
   return (
-    <div className="flex flex-col gap-y-10  md:w-1/2 md:px-0 px-2 ">
+    <div className="flex flex-col gap-y-10  md:w-3/4 flex justify-center   ">
       <div className="  dark:bg-gray-800 dark:border-gray-700 bg-white border border-gray-200  duration-500 ease-in-out rounded-lg text-gray-900 dark:text-white">
         <div
           className="flex flex-row w-full justify-between h-10 p-4 py-8 items-center"
