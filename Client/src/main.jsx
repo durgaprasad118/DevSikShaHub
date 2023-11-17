@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { lazy, Suspense } from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import './index.css'
@@ -18,7 +18,8 @@ import SignUp from './components/Register/Register.jsx'
 import UserCOursePage from './components/UserDashboard/CoursePage.jsx'
 import { Provider } from 'react-redux'
 import { store } from './redux/store.js'
-import Gallery from './components/CourseGallery/Gallery.jsx'
+// import Gallery from './components/CourseGallery/Gallery.jsx'
+const Gallery = lazy(() => import('./components/CourseGallery/Gallery.jsx'))
 import AdminGallery from './components/AdminGallery/AdminGallery.jsx'
 import CoursePage from './components/AdminGallery/CoursePage.jsx'
 import CourseForm from './components/AdminGallery/AddCourse.jsx'
@@ -32,11 +33,10 @@ const router = createBrowserRouter(
       element={<App />}
     >
       <Route
-
         path="/"
         element={<Home />}
       ></Route>
-     
+
       <Route
         path="/login"
         element={<Login />}
@@ -49,10 +49,19 @@ const router = createBrowserRouter(
         path={'/course/:courseId'}
         element={<CoursePage />}
       ></Route>
-      <Route
+      {/* <Route
         path="/courses"
         element={<Gallery />}
+      ></Route> */}
+      <Route
+        path="/courses"
+        element={
+          <Suspense fallback={<div>Loading...</div>}>
+            <Gallery />
+          </Suspense>
+        }
       ></Route>
+
       <Route
         path="/addCourse"
         element={<CourseForm />}
@@ -74,15 +83,13 @@ const router = createBrowserRouter(
         element={<AdminUpdate />}
       ></Route>
       <Route
-      path='/usercourse/:courseId'
-      element={<UserCOursePage/>}
-      >
-      </Route>
-      <Route path='/cart'
-      element={<Cart/>}
-      >
-
-      </Route>
+        path="/usercourse/:courseId"
+        element={<UserCOursePage />}
+      ></Route>
+      <Route
+        path="/cart"
+        element={<Cart />}
+      ></Route>
     </Route>,
   ),
 )
