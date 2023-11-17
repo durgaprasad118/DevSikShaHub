@@ -32,9 +32,11 @@ const router = createBrowserRouter(
       element={<App />}
     >
       <Route
+
         path="/"
         element={<Home />}
       ></Route>
+     
       <Route
         path="/login"
         element={<Login />}

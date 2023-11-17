@@ -2,6 +2,7 @@ import { configureStore } from '@reduxjs/toolkit'
 import { setupListeners } from '@reduxjs/toolkit/query'
 import { userApiSlice } from './api/userApi'
 import authReducer from './slices/authSlice'
+import CourseReducer from "./slices/Courses"
 import roleReducer from './slices/role'
 import cartReducer from './slices/cartLength'
 import { adminCourseSlice } from './api/adminApi'
@@ -13,6 +14,7 @@ export const store = configureStore({
     auth: authReducer,
     role: roleReducer,
     cartlength:cartReducer,
+    allCourses:CourseReducer,
     [userApiSlice.reducerPath]: userApiSlice.reducer,
     [adminCourseSlice.reducerPath]: adminCourseSlice.reducer,
     [userFirstApiSlice.reducerPath]:userFirstApiSlice.reducer,

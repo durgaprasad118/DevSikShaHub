@@ -2,9 +2,13 @@ import React from 'react'
 import Card from '../CourseCard/Card'
 import { useGetAllCoursesQuery } from '../../redux/api/adminApi'
 import CardSkeleton from '../../utils/CardSkeleton'
+import { useSelector } from 'react-redux'
+
 const Gallery = () => {
   const { isLoading, isError, isSuccess, data, error } = useGetAllCoursesQuery()
   const courses = data ?? ['a', 'b', 'c', 'd', 'e', 'f', 'g']
+  const AllCourses = useSelector(state => state.allCourses);
+  console.log(AllCourses);
   if (isLoading) {
     return (
       <div className="py-4 bg-gray-50 dark:bg-gray-900 grid grid-cols-1  md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 justify-items-center w-full gap-4 p-2 xs:p-0">
