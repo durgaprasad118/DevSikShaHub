@@ -12,7 +12,7 @@ const HeroSection = () => {
             New{' '}
           </span>
           <span className="text-sm font-medium">
-            DevSikShaHub will Courses!Checkout here
+            DevSikShaHub offers free Courses soon!Checkout here
           </span>
           <svg
             className="w-2.5 h-2.5 ms-2 rtl:rotate-180"
