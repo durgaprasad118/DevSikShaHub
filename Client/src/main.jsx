@@ -18,7 +18,6 @@ import SignUp from './components/Register/Register.jsx'
 import UserCOursePage from './components/UserDashboard/CoursePage.jsx'
 import { Provider } from 'react-redux'
 import { store } from './redux/store.js'
-// import Gallery from './components/CourseGallery/Gallery.jsx'
 const Gallery = lazy(() => import('./components/CourseGallery/Gallery.jsx'))
 import AdminGallery from './components/AdminGallery/AdminGallery.jsx'
 import CoursePage from './components/AdminGallery/CoursePage.jsx'
@@ -26,6 +25,7 @@ import CourseForm from './components/AdminGallery/AddCourse.jsx'
 import VerticalTimeline from './components/Roadmaps/Roadmaps.jsx'
 import { AdminUpdate } from './components/adminUpdate/AdminUpdate.jsx'
 import Explore from './components/Explore/Explore.jsx'
+import About from './components/Roadmaps/About.jsx'
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route
@@ -41,6 +41,11 @@ const router = createBrowserRouter(
         path="/login"
         element={<Login />}
       ></Route>
+      <Route 
+      path='/about'
+      element={<About/>}
+      >
+      </Route>
       <Route
         path="/adminCourses"
         element={<AdminGallery />}

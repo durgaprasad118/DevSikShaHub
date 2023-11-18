@@ -90,7 +90,7 @@ const Header = () => {
                   Courses
                 </NavLink>
                 <NavLink
-                  to={'/e'}
+                  to={'/about'}
                   className={({ isActive }) =>
                     ` dark:text-gray-300 text-gray-700 hover:dark:bg-gray-700 hover:bg-gray-300 hover:dark:text-white rounded-md px-3 py-2 text-sm font-medium ${
                       isActive && ` border-b-2 border-blue-600 rounded-t-lg`
