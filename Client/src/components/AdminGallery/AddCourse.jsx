@@ -65,7 +65,7 @@ function CourseForm() {
   }
 
   return (
-    <section className="bg-gray-50 dark:bg-gray-900 ">
+    <section className=" dark:bg-gray-900 bg-[url('https://flowbite.s3.amazonaws.com/docs/jumbotron/hero-pattern.svg')] dark:bg-[url('https://flowbite.s3.amazonaws.com/docs/jumbotron/hero-pattern-dark.svg')] bg-blend-multiply text-gray-800 dark:text-gray-50  ">
       <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 grid lg:grid-cols-1 place-items-center gap-8 lg:gap-16">
         <div className="w-full lg:max-w-xl p-6 space-y-8 sm:p-8 bg-white rounded-lg shadow-xl dark:bg-gray-800">
           <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
