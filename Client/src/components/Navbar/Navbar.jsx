@@ -169,7 +169,7 @@ const Header = () => {
         className={`sm:hidden ${isMobileMenuOpen ? 'block' : 'hidden'}`}
         id="mobile-menu"
       >
-        <div className="space-y-1 px-2 pb-3 pt-2">
+        <div className="space-y-1 px-2 pb-3 pt-2 bg-gray-50 dark:text-gray-200 text-gray-600   dark:bg-gray-800 ">
           <div className="flex items-center justify-center gap-x-1">
             <img
               className="h-8 w-auto"
@@ -186,7 +186,7 @@ const Header = () => {
           <NavLink
             to={'/'}
             onClick={() => toggleMobileMenu()}
-            className="bg-gray-900 text-white block rounded-md px-3 py-2 text-base font-medium"
+            className="bg-gray-900  block rounded-md px-3 py-2 text-base font-medium"
             aria-current="page"
           >
             Home
@@ -194,21 +194,21 @@ const Header = () => {
           <NavLink
             onClick={() => toggleMobileMenu()}
             to={'/courses'}
-            className="text-gray-300 hover-bg-gray-700 hover-text-white block rounded-md px-3 py-2 text-base font-medium"
+            className="hover-bg-gray-700 hover-text-white block rounded-md px-3 py-2 text-base font-medium"
           >
             Courses
           </NavLink>
           <NavLink
            to={'/about'}
             onClick={() => toggleMobileMenu()}
-            className="text-gray-300 hover-bg-gray-700 hover-text-white block rounded-md px-3 py-2 text-base font-medium"
+            className=" hover-bg-gray-700 hover-text-white block rounded-md px-3 py-2 text-base font-medium"
           >
             About
           </NavLink>
           <NavLink
           to={"/roadmap"}
             onClick={() => toggleMobileMenu()}
-            className="text-gray-300 hover-bg-gray-700 hover-text-white block rounded-md px-3 py-2 text-base font-medium"
+            className=" hover-bg-gray-700 hover-text-white block rounded-md px-3 py-2 text-base font-medium"
           >
             Roadmaps
           </NavLink>
