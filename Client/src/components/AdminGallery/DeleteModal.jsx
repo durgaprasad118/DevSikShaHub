@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDeleteCourseMutation } from '../../redux/api/adminApi'
 import { useNavigate } from 'react-router-dom'
 import { Button, Modal } from 'flowbite-react'
 import { HiOutlineExclamationCircle } from 'react-icons/hi'
+import { toast } from 'sonner'
 
 export default function DeleteModal({ courseId }) {
   const navigate = useNavigate()
@@ -17,7 +18,12 @@ export default function DeleteModal({ courseId }) {
   const hideModal = () => {
     setOpenModal(false)
   }
-  isSuccess && navigate('/adminCourses')
+  if (isSuccess) {
+    navigate('/adminCourses')
+  }
+  useEffect(() => {
+    isSuccess && toast.success('Course deleted Succesfully')
+  }, [isSuccess])
   return (
     <>
       <button

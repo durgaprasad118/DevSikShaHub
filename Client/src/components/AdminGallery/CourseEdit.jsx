@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react'
+import { toast } from 'sonner'
 import {
   useEditCourseMutation,
   useParticularCourseQuery,
 } from '../../redux/api/adminApi'
 import DeleteModal from './DeleteModal'
+import Spinner from '../../utils/Spinner'
 function CourseEdit({ courseId }) {
   const { data, isSuccess } = useParticularCourseQuery(courseId)
   const initialFormData = {
@@ -38,14 +40,12 @@ function CourseEdit({ courseId }) {
       [name]: newValue,
     })
   }
-  const [editCourse, { isLoading, isError }] = useEditCourseMutation()
-  if (isLoading) {
-    return (
-      <h1 className="text-7xl bg-black text-white font-bold mt-36">
-        LOADING.......................................
-      </h1>
-    )
-  }
+  const [editCourse, { isLoading, isError, isSuccess: updatedC }] =
+    useEditCourseMutation()
+  useEffect(() => {
+    updatedC && toast.success('Course updated Successfully')
+  }, [updatedC])
+
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
@@ -179,7 +179,7 @@ function CourseEdit({ courseId }) {
               type="submit"
               className="block text-white bg-blue-700 hover-bg-blue-800 focus-ring-4 focus-outline-none focus-ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark-bg-blue-600 dark-hover-bg-blue-700 dark-focus-ring-blue-800"
             >
-              Update Course
+              {isLoading ? <Spinner /> : 'Update Course'}
             </button>
             <DeleteModal courseId={courseId}></DeleteModal>
           </div>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useAddCourseMutation } from '../../redux/api/adminApi'
-import { Sucesstoast } from '../../utils/Toasts'
+import { toast } from 'sonner'
 import { useNavigate } from 'react-router-dom'
 function CourseForm() {
   const navigate = useNavigate()
@@ -23,6 +23,9 @@ function CourseForm() {
     })
   }
   const [addCourse, { isLoading, isSuccess, isError }] = useAddCourseMutation()
+  useEffect(() => {
+    isSuccess && toast.success('Course created Successfully')
+  }, [isSuccess])
   if (isLoading) {
     return (
       <div className="py-8 px-4 mx-auto max-w-screen-xl   lg:py-16 grid lg:grid-cols-1 place-items-center gap-8 lg:gap-16  dark:bg-gray-900 bg-[url('https://flowbite.s3.amazonaws.com/docs/jumbotron/hero-pattern.svg')] dark:bg-[url('https://flowbite.s3.amazonaws.com/docs/jumbotron/hero-pattern-dark.svg')] bg-blend-multiply text-gray-800 dark:text-gray-50">
@@ -42,7 +45,7 @@ function CourseForm() {
   if (isSuccess) {
     setTimeout(() => {
       navigate('/adminCourses')
-    }, 10)
+    }, 100)
     return (
       <div className="flex items-center bg-gray-50 dark:bg-gray-900 justify-center h-[60vh]">
         <h1 className="md:text-7xl text-xl bg-black text-white font-bold p-4 rounded-lg shadow-lg text-center">

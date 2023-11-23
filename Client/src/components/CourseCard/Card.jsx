@@ -1,13 +1,12 @@
-import React,{useState} from 'react'
+import React, { useState } from 'react'
 import { FaRupeeSign } from 'react-icons/fa'
-import { useSelector,useDispatch } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { Link, useLocation } from 'react-router-dom'
 import altImage from '../../assets/alt_Image.jpg'
 import { useGetAdminNameQuery } from '../../redux/api/adminApi'
 import { useAddToCartMutation } from '../../redux/Cart/Usercart'
 import { useGetEnrolledCoursesQuery } from '../../redux/Cart/Usercart'
 import { setcartLength } from '../../redux/slices/cartLength'
-import {Sucesstoast} from "../../utils/Toasts"
 const Card = ({
   title,
   description,
@@ -18,18 +17,18 @@ const Card = ({
   admin,
   _id,
 }) => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
   const location = useLocation()
   const Specificlocation = (location.pathname = '/adminCourses')
   const { data, isSuccess } = useGetAdminNameQuery(`${admin}`)
   const [addtoCart, { isLoading }] = useAddToCartMutation()
-  const {data:enrolled,isSuccess:gotIt} = useGetEnrolledCoursesQuery();
-  let courseEnrolled = false;
+  const { data: enrolled, isSuccess: gotIt } = useGetEnrolledCoursesQuery()
+  let courseEnrolled = false
   const { role } = useSelector((state) => state.role)
-  if(role ==='user'){
-    if(gotIt){
-    let answer= enrolled.courses.find(x=> x._id ===_id)
-      answer&& (courseEnrolled=true)
+  if (role === 'user') {
+    if (gotIt) {
+      let answer = enrolled.courses.find((x) => x._id === _id)
+      answer && (courseEnrolled = true)
     }
   }
   let adminName
@@ -94,9 +93,7 @@ const Card = ({
                 </button>
               ) : courseEnrolled ? (
                 <button className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                  <Link to={`/usercourse/${_id}`}>
-                    Go to Course
-                  </Link>
+                  <Link to={`/usercourse/${_id}`}>Go to Course</Link>
                 </button>
               ) : (
                 <Link

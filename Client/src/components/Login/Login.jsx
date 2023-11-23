@@ -1,52 +1,47 @@
 import React, { useState, useEffect } from 'react'
-import { Link, useNavigate ,useLocation} from 'react-router-dom'
+import { Link, useNavigate, useLocation } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { useLoginMutation } from '../../redux/api/userApi'
 import { useUserloginMutation } from '../../redux/api/userFirst'
 import { setCredentials } from '../../redux/slices/authSlice'
 import Logo from '../../assets/Logo.png'
-import { ErrorToast, Sucesstoast } from '../../utils/Toasts'
 import { useAddToCartMutation } from '../../redux/Cart/Usercart'
 import Spinner from '../../utils/Spinner'
+import { toast } from 'sonner'
 const Login = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const { userInfo } = useSelector((state) => state.auth)
-  const {role} = useSelector(state=> state.role)
-  let loginMutation;
-  if(role=='admin'){
-    loginMutation= useLoginMutation()
-  }else{
-    loginMutation= useUserloginMutation();
+  const { role } = useSelector((state) => state.role)
+  let loginMutation
+  if (role == 'admin') {
+    loginMutation = useLoginMutation()
+  } else {
+    loginMutation = useUserloginMutation()
   }
-  const location = useLocation();
+  const location = useLocation()
 
-  const [login,{isLoading}] = loginMutation
-  const [cart]= useAddToCartMutation();
+  const [login, { isLoading }] = loginMutation
+  const [cart] = useAddToCartMutation()
   useEffect(() => {
-    if(role==='user' && location.pathname=='/' ){
-      cart();
-    }
-    if (userInfo) {
-      setTimeout(()=>{
-        navigate('/')
-      },500)
-      Sucesstoast("You have successfully logged In")
+    if (role === 'user' && location.pathname == '/') {
+      cart()
     }
   }, [navigate, userInfo])
   const submitHandler = async (e) => {
     e.preventDefault()
     try {
       const result = await login({ email, password })
-      if(result.error){
-        ErrorToast(`${result.error.data.message}`)
+      if (result.error) {
+        toast.error(`${result.error.data.message}`)
       }
-     localStorage.setItem("token",result.data.token) 
-     let details = role == 'admin'? result.data.Admin: result.data.User;
+      localStorage.setItem('token', result.data.token)
+      let details = role == 'admin' ? result.data.Admin : result.data.User
       dispatch(setCredentials(details))
-      
+      navigate('/')
+      toast.success('Succssfully loggedin')
     } catch (error) {
       console.log(error)
     }
@@ -75,10 +70,7 @@ const Login = () => {
               onSubmit={submitHandler}
             >
               <div>
-                <label
-                 
-                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                >
+                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                   Your email
                 </label>
                 <input
@@ -93,10 +85,7 @@ const Login = () => {
                 />
               </div>
               <div>
-                <label
-                 
-                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                >
+                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                   Password
                 </label>
                 <input
@@ -122,10 +111,7 @@ const Login = () => {
                   />
                 </div>
                 <div className="ml-3 text-sm">
-                  <label
-                    
-                    className="font-light text-gray-500 dark:text-gray-300"
-                  >
+                  <label className="font-light text-gray-500 dark:text-gray-300">
                     i accept the{' '}
                     <a
                       className="font-medium text-primary-600 hover:underline dark:text-primary-500"
@@ -146,7 +132,6 @@ const Login = () => {
                 New?
                 <Link
                   to={'/register'}
-                 
                   className="font-medium text-primary-600 hover:underline dark:text-primary-500"
                 >
                   Register here

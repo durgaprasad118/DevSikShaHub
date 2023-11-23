@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useUpdateAdminDetailsMutation } from '../../redux/api/adminApi'
 import { useUpdateUserDetailsMutation } from '../../redux/api/userProtectedApi'
-import { ErrorToast, Sucesstoast } from '../../utils/Toasts'
+import {toast} from "sonner"
 import { useNavigate } from 'react-router-dom'
 import { logOut } from '../../redux/slices/authSlice'
 import AdminDelete from './AdminDelete'
@@ -31,11 +31,11 @@ export const AdminUpdate = () => {
     try {
       const result = await detailsUpdate({ name, password })
       if (result.error) {
-        ErrorToast(`${result.error.data.message}`)
+        toast.error(`${result.error.data.message}`)
       } else {
         navigate('/')
         setTimeout(() => {
-          Sucesstoast('Please login Again')
+          toast.success('Please login Again')
         }, 500)
         dispatch(logOut(null))
       }

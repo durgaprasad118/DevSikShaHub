@@ -2,10 +2,9 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useRegisterMutation } from '../../redux/api/userApi'
 import { useUserregisterMutation } from '../../redux/api/userFirst'
-
+import { toast } from 'sonner'
 import { Link } from 'react-router-dom'
 import Logo from '../../assets/Logo.png'
-import { ErrorToast, Sucesstoast } from '../../utils/Toasts'
 import Spinner from '../../utils/Spinner'
 import { useSelector } from 'react-redux'
 const SignUp = () => {
@@ -14,12 +13,12 @@ const SignUp = () => {
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
   const navigate = useNavigate()
-  const {role} = useSelector(state=> state.role)
-  let registerMutation;
-  if(role=='admin'){
-    registerMutation= useRegisterMutation()
-  }else{
-    registerMutation= useUserregisterMutation();
+  const { role } = useSelector((state) => state.role)
+  let registerMutation
+  if (role == 'admin') {
+    registerMutation = useRegisterMutation()
+  } else {
+    registerMutation = useUserregisterMutation()
   }
   const [register, { isLoading, isError, error }] = registerMutation
 
@@ -27,17 +26,16 @@ const SignUp = () => {
     e.preventDefault()
     try {
       if (password !== confirmPassword) {
-        ErrorToast('Password not matched')
-      }
-      const result = await register({
-        name,
-        email,
-        password,
-      })
-      setTimeout(()=>{
+        toast.error('Password not matched')
+      } else {
+        const result = await register({
+          name,
+          email,
+          password,
+        })
         navigate('/login')
-      },500)
-      Sucesstoast('Successfully registered, login Now')
+        toast.success('Successfully registered, login Now')
+      }
     } catch (error) {
       console.log(error)
     }

@@ -5,6 +5,7 @@ import './index.css'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { DarkThemeToggle, Flowbite } from 'flowbite-react'
+import { Toaster } from 'sonner'
 import {
   createRoutesFromElements,
   Route,
@@ -103,6 +104,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <Provider store={store}>
       <Flowbite>
         <RouterProvider router={router} />
+        <Toaster position="top-center" richColors closeButton></Toaster>
         <ToastContainer></ToastContainer>
       </Flowbite>
     </Provider>

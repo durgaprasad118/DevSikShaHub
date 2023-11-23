@@ -7,11 +7,11 @@ import {
   useEnrollCourseMutation,
 } from '../../redux/Cart/Usercart'
 import { Table } from 'flowbite-react'
-import { Sucesstoast, WarnToast } from '../../utils/Toasts'
+import { toast } from 'sonner'
 import { useDispatch } from 'react-redux'
-import { setcartLength,resetLength } from '../../redux/slices/cartLength'
+import { setcartLength, resetLength } from '../../redux/slices/cartLength'
 const Cart = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
   const { data, isLoading } = useGetCartQuery()
   const [deleteItem] = useDeleteItemMutation()
   const [emptyCart] = useEmptyCartMutation()
@@ -20,7 +20,7 @@ const Cart = () => {
 
   useEffect(() => {
     if (successfullyEnrolled) {
-      Sucesstoast('Successfully enrolled')
+      toast.success('Successfully enrolled')
       ;(async () => {
         await emptyCart()
       })()
@@ -41,10 +41,14 @@ const Cart = () => {
       </h1>
       {cart.length > 0 ? (
         <div className="w-full dark:bg-gray-900 px-2 md:px-10 text-gray-800">
-          <Table hoverable >
+          <Table hoverable>
             <Table.Head>
-              <Table.HeadCell className='md:text-lg text-md'>Course Name</Table.HeadCell>
-              <Table.HeadCell className='md:text-lg text-md'>Price</Table.HeadCell>
+              <Table.HeadCell className="md:text-lg text-md">
+                Course Name
+              </Table.HeadCell>
+              <Table.HeadCell className="md:text-lg text-md">
+                Price
+              </Table.HeadCell>
               <Table.HeadCell>
                 <span className="sr-only">Edit</span>
               </Table.HeadCell>
@@ -59,7 +63,7 @@ const Cart = () => {
                     <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white text-lg">
                       {course.title}
                     </Table.Cell>
-                    <Table.Cell className='text-lg'>{course.price}</Table.Cell>
+                    <Table.Cell className="text-lg">{course.price}</Table.Cell>
                     <Table.Cell>
                       <button
                         onClick={async () => {
@@ -98,41 +102,45 @@ const Cart = () => {
           </h1>
         </>
       )}
-     {cart.length>0 && <div className="w-full py-4 md:px-10 px-2 flex justify-end items-center">
-        <div className="bg-white border md:h-40 h-32  flex flex-col justify-center items-center gap-y-4 border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 md:w-1/2 w-full">
-          <h1 className="text-left dark:text-gray-50 text-gray-800">{`Grand Total: ${price}`}</h1>
+      {cart.length > 0 && (
+        <div className="w-full py-4 md:px-10 px-2 flex justify-end items-center">
+          <div className="bg-white border md:h-40 h-32  flex flex-col justify-center items-center gap-y-4 border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 md:w-1/2 w-full">
+            <h1 className="text-left dark:text-gray-50 text-gray-800">{`Grand Total: ${price}`}</h1>
+            <button
+              onClick={async () => {
+                try {
+                  const result = enrollCourse()
+                  dispatch(resetLength())
+                } catch (error) {
+                  console.log(error)
+                }
+              }}
+              type="button"
+              className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 w-3/4"
+            >
+              Purchase
+            </button>
+          </div>
+        </div>
+      )}
+      {cart.length > 0 && (
+        <div className="py-4 text-center ">
           <button
+            type="button"
             onClick={async () => {
               try {
-                const result = enrollCourse()
+                const result = emptyCart()
                 dispatch(resetLength())
               } catch (error) {
                 console.log(error)
               }
             }}
-            type="button"
-            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 w-3/4"
+            className="text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900"
           >
-            Purchase
+            Empty the Cart
           </button>
         </div>
-      </div>}
-     { cart.length>0 && <div className="py-4 text-center ">
-        <button
-          type="button"
-          onClick={async () => {
-            try {
-              const result = emptyCart()
-              dispatch(resetLength())
-            } catch (error) {
-              console.log(error)
-            }
-          }}
-          className="text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900"
-        >
-          Empty the Cart
-        </button>
-      </div>}
+      )}
     </div>
   )
 }
