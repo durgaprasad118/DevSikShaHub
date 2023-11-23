@@ -8,10 +8,10 @@ const Explore = () => {
   const [a, setA] = useState(role)
   return (
     <div className=" dark:bg-gray-900 bg-[url('https://flowbite.s3.amazonaws.com/docs/jumbotron/hero-pattern.svg')] dark:bg-[url('https://flowbite.s3.amazonaws.com/docs/jumbotron/hero-pattern-dark.svg')] bg-blend-multiply text-gray-800 dark:text-gray-50 h-[66vh] flex flex-col items-center justify-center">
-      <h1 className=" text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl  dark:text-white translate-y-20">
+      <h1 className=" text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl  dark:text-white md:translate-y-20 mt-8 mb-4 md:mt-0 md:mb-0">
         Choose your<span className="text-blue-600"> Role</span>
       </h1>
-      <div className="flex items-center justify-center w-full h-full gap-x-2 md:flex-row flex-col gap-y-2">
+      <div className="flex items-center justify-center w-full px-2 md:px-0 h-full md:gap-x-2 gap-y-4 md:flex-row flex-col gap-y-2">
         <Link
           to="/register"
           onClick={() => {
