@@ -33,15 +33,21 @@ const SignUp = () => {
           email,
           password,
         })
-        navigate('/login')
-        toast.success('Successfully registered, login Now')
+        if(result.error){
+          toast.error(result.error.data.message)
+        }
+        else{
+          navigate('/login')
+          toast.success('Successfully registered, login Now')
+        }
+        
       }
     } catch (error) {
       console.log(error)
     }
   }
   if (isError) {
-    console.log(error)
+    console.log(error.data.message)// this is the password streenght check erorr it should give toast and the page should not go to login page and should not loose the data
   }
   return (
     <section className=" dark:bg-gray-900 bg-[url('https://flowbite.s3.amazonaws.com/docs/jumbotron/hero-pattern.svg')] dark:bg-[url('https://flowbite.s3.amazonaws.com/docs/jumbotron/hero-pattern-dark.svg')] bg-blend-multiply text-gray-800 dark:text-gray-50">
