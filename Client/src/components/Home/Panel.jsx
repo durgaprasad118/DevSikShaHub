@@ -8,7 +8,7 @@ const Panel = ({ id, description, title }) => {
     setisActive(isActive === id ? -1 : id)
   }
   return (
-    <div className="flex flex-col gap-y-10  md:w-3/4 flex justify-center   ">
+    <div className="flex flex-col gap-y-10  md:w-3/4 flex justify-center ">
       <div className="  dark:bg-gray-800 dark:border-gray-700 bg-white border border-gray-200  duration-500 ease-in-out rounded-lg text-gray-900 dark:text-white">
         <div
           className="flex flex-row w-full justify-between h-10 p-4 py-8 items-center"
@@ -27,7 +27,7 @@ const Panel = ({ id, description, title }) => {
               : { maxHeight: '0px' }
           }
           ref={content}
-          className={`max-h-0 overflow-hidden   dark:bg-gray-600 bg-gray-200 transition-all  duration-500 ease-out rounded-lg`}
+          className={`max-h-0 overflow-hidden   dark:bg-gray-600 bg-gray-200 transition-all  duration-500 ease-out rounded-b-lg`}
         >
           <p className="p-3 text-xs md:text-lg">{description}</p>
         </div>
