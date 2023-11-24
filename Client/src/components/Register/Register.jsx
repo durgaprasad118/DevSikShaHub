@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useRegisterMutation } from '../../redux/api/userApi'
 import { useUserregisterMutation } from '../../redux/api/userFirst'
@@ -20,8 +20,11 @@ const SignUp = () => {
   } else {
     registerMutation = useUserregisterMutation()
   }
-  const [register, { isLoading, isError, error }] = registerMutation
+  const checkPasswordStrength = new RegExp(
+    '^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})',
+  )
 
+  const [register, { isLoading, isError, error }] = registerMutation
   const submitHandler = async (e) => {
     e.preventDefault()
     try {
@@ -33,21 +36,19 @@ const SignUp = () => {
           email,
           password,
         })
-        if(result.error){
+        if (result.error) {
           toast.error(result.error.data.message)
-        }
-        else{
+        } else {
           navigate('/login')
           toast.success('Successfully registered, login Now')
         }
-        
       }
     } catch (error) {
       console.log(error)
     }
   }
   if (isError) {
-    console.log(error.data.message)// this is the password streenght check erorr it should give toast and the page should not go to login page and should not loose the data
+    console.log(error.data.message)
   }
   return (
     <section className=" dark:bg-gray-900 bg-[url('https://flowbite.s3.amazonaws.com/docs/jumbotron/hero-pattern.svg')] dark:bg-[url('https://flowbite.s3.amazonaws.com/docs/jumbotron/hero-pattern-dark.svg')] bg-blend-multiply text-gray-800 dark:text-gray-50">
@@ -118,7 +119,9 @@ const SignUp = () => {
                 <input
                   type="password"
                   value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  onChange={(e) => {
+                    setPassword(e.target.value)
+                  }}
                   name="password"
                   id="password"
                   placeholder="••••••••"
@@ -126,6 +129,35 @@ const SignUp = () => {
                   required
                 />
               </div>
+              {!checkPasswordStrength.test(password) ? (
+                <div
+                  className="flex py-2 mb-4 text-sm text-yellow-800 rounded-lg bg-yellow-50 dark:bg-gray-800 dark:text-yellow-300"
+                  role="alert"
+                >
+                  <ul className="ml-6 list-disc text-xs md:text-sm ">
+                    <li>At least 8 characters </li>
+                    <li>Include Uppercase,lowercase,Number</li>
+                    <li>Include special characters e.g., ! @ # </li>
+                  </ul>
+                </div>
+              ) : (
+                <div
+                  className="px-4 py-2 mb-2 text-xs text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400 text-center"
+                  role="alert"
+                >
+                  Strong password{' '}
+                  <svg
+                    className="w-4 h-4 inline"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
+                  </svg>
+                </div>
+              )}
+
               <div>
                 <label
                   htmlFor="confirm-password"

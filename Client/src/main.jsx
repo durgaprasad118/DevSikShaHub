@@ -2,9 +2,7 @@ import React, { lazy, Suspense } from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import './index.css'
-import { ToastContainer } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
-import { DarkThemeToggle, Flowbite } from 'flowbite-react'
+import { Flowbite } from 'flowbite-react'
 import { Toaster } from 'sonner'
 import {
   createRoutesFromElements,
@@ -42,11 +40,10 @@ const router = createBrowserRouter(
         path="/login"
         element={<Login />}
       ></Route>
-      <Route 
-      path='/about'
-      element={<About/>}
-      >
-      </Route>
+      <Route
+        path="/about"
+        element={<About />}
+      ></Route>
       <Route
         path="/adminCourses"
         element={<AdminGallery />}
@@ -104,8 +101,11 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <Provider store={store}>
       <Flowbite>
         <RouterProvider router={router} />
-        <Toaster position="top-center" richColors closeButton></Toaster>
-        <ToastContainer></ToastContainer>
+        <Toaster
+          position="top-center"
+          richColors
+          closeButton
+        ></Toaster>
       </Flowbite>
     </Provider>
   </React.StrictMode>,
