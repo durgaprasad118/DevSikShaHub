@@ -9,8 +9,8 @@ const Home = () => {
       <div className=" dark:bg-gray-900 bg-[url('https://flowbite.s3.amazonaws.com/docs/jumbotron/hero-pattern.svg')] dark:bg-[url('https://flowbite.s3.amazonaws.com/docs/jumbotron/hero-pattern-dark.svg')] bg-blend-multiply text-gray-800 dark:text-gray-50">
         <HeroSection></HeroSection>
         <About></About>
-        <Accordian></Accordian>
         <Carousel></Carousel>
+        <Accordian></Accordian>
       </div>
     </>
   )
