@@ -17,7 +17,6 @@ const Cart = () => {
   const [emptyCart] = useEmptyCartMutation()
   const [enrollCourse, { isSuccess: successfullyEnrolled }] =
     useEnrollCourseMutation()
-
   useEffect(() => {
     if (successfullyEnrolled) {
       toast.success('Successfully enrolled')
@@ -25,7 +24,7 @@ const Cart = () => {
         await emptyCart()
       })()
     }
-  }, [successfullyEnrolled])
+  }, [successfullyEnrolled]);
   let cart = []
   if (!isLoading) {
     cart = data.courses
@@ -40,7 +39,7 @@ const Cart = () => {
         Your Cart
       </h1>
       {cart.length > 0 ? (
-        <div className="w-full dark:bg-gray-900 px-2 md:px-10 text-gray-800">
+        <div className="w-full px-2 py-2 dark:bg-gray-900 md:px-10 text-gray-800">
           <Table hoverable>
             <Table.Head>
               <Table.HeadCell className="md:text-lg text-md">

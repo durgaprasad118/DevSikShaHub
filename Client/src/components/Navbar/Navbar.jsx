@@ -6,15 +6,21 @@ import Logo from '../../assets/Logo.png'
 import Dropdown from './Dropdown'
 import { FcPlus } from 'react-icons/fc'
 import { BsCartPlus } from 'react-icons/bs'
-
+import { useGetCartQuery } from '../../redux/Cart/Usercart'
 const Header = () => {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false)
   const { userInfo } = useSelector((state) => state.auth)
   const { role } = useSelector((state) => state.role)
   const {cartLength} = useSelector((state)=>state.cartlength) 
+  const { data, isLoading } = useGetCartQuery()
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!isMobileMenuOpen)
   }
+  let length=0;
+  if(!isLoading){
+    length=data.courses.length;
+  }
+  
   return (
     <nav className="bg-opacity-40 backdrop-blur-lg bg-gray-100  dark:bg-gray-800 sticky top-0 w-full z-[10000]">
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -145,7 +151,7 @@ const Header = () => {
                       {
                         <BsCartPlus className="dark:text-gray-50 text-gray-900 md:text-2xl text-xl font-bold " />
                       }
-                      <p className="dark:text-gray-50 text-gray-900 text-lg">{`(${cartLength})`}</p>
+                      <p className="dark:text-gray-50 text-gray-900 text-lg">{`(${length})`}</p>
                     </Link>
                   )}
                   <Dropdown></Dropdown>
