@@ -39,7 +39,7 @@ const Cart = () => {
         Your Cart
       </h1>
       {cart.length > 0 ? (
-        <div className="w-full px-2 py-2 dark:bg-gray-900 md:px-10 text-gray-800">
+        <div className="w-full overflow-x-auto px-2 py-2 dark:bg-gray-900 sm:px-10 text-gray-800">
           <Table hoverable>
             <Table.Head>
               <Table.HeadCell className="md:text-lg text-md">
