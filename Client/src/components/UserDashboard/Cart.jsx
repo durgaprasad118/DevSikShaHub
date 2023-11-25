@@ -8,10 +8,7 @@ import {
 } from '../../redux/Cart/Usercart'
 import { Table } from 'flowbite-react'
 import { toast } from 'sonner'
-import { useDispatch } from 'react-redux'
-import { setcartLength, resetLength } from '../../redux/slices/cartLength'
 const Cart = () => {
-  const dispatch = useDispatch()
   const { data, isLoading } = useGetCartQuery()
   const [deleteItem] = useDeleteItemMutation()
   const [emptyCart] = useEmptyCartMutation()
@@ -24,7 +21,7 @@ const Cart = () => {
         await emptyCart()
       })()
     }
-  }, [successfullyEnrolled]);
+  }, [successfullyEnrolled])
   let cart = []
   if (!isLoading) {
     cart = data.courses
@@ -68,7 +65,7 @@ const Cart = () => {
                         onClick={async () => {
                           try {
                             const result = deleteItem(course._id)
-                            dispatch(setcartLength(-1))
+                            // dispatch(setcartLength(-1))
                           } catch (error) {
                             console.log(error)
                           }
@@ -109,7 +106,6 @@ const Cart = () => {
               onClick={async () => {
                 try {
                   const result = enrollCourse()
-                  dispatch(resetLength())
                 } catch (error) {
                   console.log(error)
                 }
@@ -129,7 +125,6 @@ const Cart = () => {
             onClick={async () => {
               try {
                 const result = emptyCart()
-                dispatch(resetLength())
               } catch (error) {
                 console.log(error)
               }

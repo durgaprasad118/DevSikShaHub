@@ -11,16 +11,16 @@ const Header = () => {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false)
   const { userInfo } = useSelector((state) => state.auth)
   const { role } = useSelector((state) => state.role)
-  const {cartLength} = useSelector((state)=>state.cartlength) 
+
   const { data, isLoading } = useGetCartQuery()
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!isMobileMenuOpen)
   }
-  let length=0;
-  if(!isLoading){
-    length=data.courses.length;
+  let length = 0
+  if (!isLoading) {
+    length = data.courses.length
   }
-  
+
   return (
     <nav className="bg-opacity-40 backdrop-blur-lg bg-gray-100  dark:bg-gray-800 sticky top-0 w-full z-[10000]">
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -67,13 +67,13 @@ const Header = () => {
           </div>
           <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
             <div className="flex flex-shrink-0 items-center">
-              <Link to={"/"}>
-              <img
-                className="h-8 w-auto md:block hidden"
-                src={Logo}
-                alt="Your Company"
+              <Link to={'/'}>
+                <img
+                  className="h-8 w-auto md:block hidden"
+                  src={Logo}
+                  alt="Your Company"
                 />
-                </Link>
+              </Link>
             </div>
             <div className="hidden sm:ml-6 sm:block">
               <div className="flex space-x-4 ">
@@ -207,14 +207,14 @@ const Header = () => {
             Courses
           </NavLink>
           <NavLink
-           to={'/about'}
+            to={'/about'}
             onClick={() => toggleMobileMenu()}
             className=" hover-bg-gray-700 hover-text-white block rounded-md px-3 py-2 text-base font-medium"
           >
             About
           </NavLink>
           <NavLink
-          to={"/roadmap"}
+            to={'/roadmap'}
             onClick={() => toggleMobileMenu()}
             className=" hover-bg-gray-700 hover-text-white block rounded-md px-3 py-2 text-base font-medium"
           >

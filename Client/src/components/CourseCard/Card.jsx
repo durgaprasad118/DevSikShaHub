@@ -6,7 +6,6 @@ import altImage from '../../assets/alt_Image.jpg'
 import { useGetAdminNameQuery } from '../../redux/api/adminApi'
 import { useAddToCartMutation } from '../../redux/Cart/Usercart'
 import { useGetEnrolledCoursesQuery } from '../../redux/Cart/Usercart'
-import { setcartLength } from '../../redux/slices/cartLength'
 const Card = ({
   title,
   description,
@@ -100,7 +99,6 @@ const Card = ({
                   onClick={async () => {
                     try {
                       const result = await addtoCart(_id)
-                      dispatch(setcartLength(1))
                     } catch (error) {
                       console.log(error)
                     }
