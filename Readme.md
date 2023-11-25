@@ -13,7 +13,7 @@ DevSikShaHub is an online learning platform that delivers educational courses ov
 
 - **Backend**: Node.js, Express.js, MongoDB, JSON Web Tokens (JWT) for authentication
 
-- **Others**: react-icons, react-toastify
+- **Others**: react-icons, Sonner
 ## Installation
 
 Follow these steps to set up the ToDo App on your local environment:
