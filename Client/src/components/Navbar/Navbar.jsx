@@ -17,7 +17,7 @@ const Header = () => {
     setMobileMenuOpen(!isMobileMenuOpen)
   }
   let length = 0
-  if (!isLoading) {
+  if (!isLoading && role=='user') {
     length = data.courses.length
   }
 
