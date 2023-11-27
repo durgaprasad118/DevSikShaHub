@@ -1,5 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState ,useEffect} from 'react'
 import Panel from './Panel'
+import Aos from 'aos'
+import 'aos/dist/aos.css'
 const data = [
   {
     title: "Can I get a refund if I'm not satisfied with a course?",
@@ -45,6 +47,9 @@ const Accordian = () => {
   function handleclick(id) {
     setisActive(isActive === id ? -1 : id)
   }
+  useEffect(() => {
+    Aos.init({ duration: '1000' })
+  })
 
   return (
     <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 ">
@@ -58,6 +63,7 @@ const Accordian = () => {
           title={x.title}
           id={x.id}
           description={x.description}
+          data-aos="fade-right"
           ></Panel>
           )
         })}
