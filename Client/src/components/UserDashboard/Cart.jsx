@@ -9,7 +9,7 @@ import {
 import { Table } from 'flowbite-react'
 import { toast } from 'sonner'
 const Cart = () => {
-  const { data, isLoading } = useGetCartQuery()
+  const { data, isLoading,isSuccess } = useGetCartQuery()
   const [deleteItem] = useDeleteItemMutation()
   const [emptyCart] = useEmptyCartMutation()
   const [enrollCourse, { isSuccess: successfullyEnrolled }] =
@@ -23,7 +23,7 @@ const Cart = () => {
     }
   }, [successfullyEnrolled])
   let cart = []
-  if (!isLoading) {
+  if (isSuccess) {
     cart = data.courses
   }
   let price = cart.reduce((ac, cur) => {
