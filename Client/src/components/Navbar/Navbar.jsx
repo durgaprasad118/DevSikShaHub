@@ -7,22 +7,25 @@ import Dropdown from './Dropdown'
 import { FcPlus } from 'react-icons/fc'
 import { BsCartPlus } from 'react-icons/bs'
 import { useGetCartQuery } from '../../redux/Cart/Usercart'
+import Aos from 'aos'
+import 'aos/dist/aos.css'
 const Header = () => {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false)
   const { userInfo } = useSelector((state) => state.auth)
   const { role } = useSelector((state) => state.role)
-
-  const { data, isLoading } = useGetCartQuery()
+  const { data, isLoading, isSuccess } = useGetCartQuery()
+  useEffect(()=>{
+    Aos.init({duration:'1000'})
+  })
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!isMobileMenuOpen)
   }
   let length = 0
-  if (!isLoading && role=='user' && userInfo) {
+  if (isSuccess && role == 'user' && userInfo) {
     length = data.courses.length
   }
-
   return (
-    <nav className="bg-opacity-40 backdrop-blur-lg bg-gray-100  dark:bg-gray-800 sticky top-0 w-full z-[10000]">
+    <nav className="bg-opacity-40 backdrop-blur-lg bg-gray-100  dark:bg-gray-800 sticky top-0 w-full z-[10000]" data-aos="zoom-in">
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
         <div className="relative flex h-16 items-center justify-between">
           <div className="absolute inset-y-0 left-0 flex items-center gap-x-1 sm:hidden">
