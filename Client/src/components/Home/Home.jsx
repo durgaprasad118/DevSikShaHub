@@ -3,7 +3,6 @@ import Accordian from './Accordian'
 import Carousel from './Carousal'
 import HeroSection from './HeroSection'
 import About from './About'
-
 const Home = () => {
   return (
     <>
