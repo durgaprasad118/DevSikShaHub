@@ -52,10 +52,6 @@ const router = createBrowserRouter(
         path={'/course/:courseId'}
         element={<CoursePage />}
       ></Route>
-      {/* <Route
-        path="/courses"
-        element={<Gallery />}
-      ></Route> */}
       <Route
         path="/courses"
         element={
