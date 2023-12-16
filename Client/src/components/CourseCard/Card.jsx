@@ -1,11 +1,13 @@
-import React, { useState } from 'react'
-import { FaRupeeSign } from 'react-icons/fa'
-import { useSelector, useDispatch } from 'react-redux'
-import { Link, useLocation } from 'react-router-dom'
-import altImage from '../../assets/alt_Image.jpg'
-import { useGetAdminNameQuery } from '../../redux/api/adminApi'
-import { useAddToCartMutation } from '../../redux/Cart/Usercart'
-import { useGetEnrolledCoursesQuery } from '../../redux/Cart/Usercart'
+import React, { useState, useEffect } from "react";
+import { FaRupeeSign } from "react-icons/fa";
+import { useSelector, useDispatch } from "react-redux";
+import { Link, useLocation } from "react-router-dom";
+import altImage from "../../assets/alt_Image.jpg";
+import { useGetAdminNameQuery } from "../../redux/api/adminApi";
+import { useAddToCartMutation } from "../../redux/Cart/Usercart";
+import { useGetEnrolledCoursesQuery } from "../../redux/Cart/Usercart";
+import Aos from "aos";
+import "aos/dist/aos.css";
 const Card = ({
   title,
   description,
@@ -16,29 +18,35 @@ const Card = ({
   admin,
   _id,
 }) => {
-  const dispatch = useDispatch()
-  const location = useLocation()
-  const Specificlocation = (location.pathname = '/adminCourses')
-  const { data, isSuccess } = useGetAdminNameQuery(`${admin}`)
-  const [addtoCart, { isLoading }] = useAddToCartMutation()
-  const { data: enrolled, isSuccess: gotIt } = useGetEnrolledCoursesQuery()
-  let courseEnrolled = false
-  const { role } = useSelector((state) => state.role)
-  if (role === 'user') {
+  const dispatch = useDispatch();
+  const location = useLocation();
+  const Specificlocation = (location.pathname = "/adminCourses");
+  const { data, isSuccess } = useGetAdminNameQuery(`${admin}`);
+  const [addtoCart, { isLoading }] = useAddToCartMutation();
+  const { data: enrolled, isSuccess: gotIt } = useGetEnrolledCoursesQuery();
+  let courseEnrolled = false;
+  const { role } = useSelector((state) => state.role);
+  if (role === "user") {
     if (gotIt) {
-      let answer = enrolled.courses.find((x) => x._id === _id)
-      answer && (courseEnrolled = true)
+      let answer = enrolled.courses.find((x) => x._id === _id);
+      answer && (courseEnrolled = true);
     }
   }
-  let adminName
+  let adminName;
   if (isSuccess) {
-    adminName = data.adminName
+    adminName = data.adminName;
   }
-  const { userInfo } = useSelector((state) => state.auth)
-  let id = userInfo ? userInfo.id : 1
+  useEffect(() => {
+    Aos.init({ duration: "1000" });
+  });
+  const { userInfo } = useSelector((state) => state.auth);
+  let id = userInfo ? userInfo.id : 1;
   return (
     <div className="w-80 h-96">
-      <div className="max-w-sm h-full relative bg-gray-50 border border-gray-200 rounded-lg shadow dark:bg-gray-800 text-gray-700 dark:text-gray-400  dark:border-gray-700 hover:scale-[1.03] transition-transform duration-300 ease-in-out">
+      <div
+        data-aos="zoom-in-up"
+        className="max-w-sm h-full relative bg-gray-50 border border-gray-200 rounded-lg shadow dark:bg-gray-800 text-gray-700 dark:text-gray-400  dark:border-gray-700 hover:scale-[1.03] transition-transform duration-300 ease-in-out"
+      >
         <div>
           <div className="">
             <img
@@ -72,7 +80,7 @@ const Card = ({
             </div>
 
             <p className="text-gray-600 text-sm pt-1 pl-1 text-left  dark:text-gray-300">
-              {' '}
+              {" "}
               {adminName}
             </p>
             <div className="flex items-center justify-between  py-4 ">
@@ -84,7 +92,7 @@ const Card = ({
                   {offer}% off
                 </span>
               </div>
-              {role == 'admin' && userInfo ? (
+              {role == "admin" && userInfo ? (
                 <button className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                   <Link to={admin == id ? `/course/${_id}` : `/courses`}>
                     Go to Course
@@ -98,9 +106,9 @@ const Card = ({
                 <Link
                   onClick={async () => {
                     try {
-                      const result = await addtoCart(_id)
+                      const result = await addtoCart(_id);
                     } catch (error) {
-                      console.log(error)
+                      console.log(error);
                     }
                   }}
                   className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
@@ -113,7 +121,7 @@ const Card = ({
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Card
+export default Card;

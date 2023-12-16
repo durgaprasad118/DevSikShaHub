@@ -21,7 +21,6 @@ export const aboutText = [
   "Level up your frontend game with us! Get ready to unleash your inner coding beast as we provide you with a treasure trove of free resources and expert guidance. Together, we'll craft mind-blowing user experiences that will leave everyone in awe.",
 
   "Frontend Freaks ain't your ordinary platform, my friend. It's a vibrant hub of innovation where the coolest and most passionate folks like you come together to break the shackles of web development. We're all about pushing boundaries!",
-
 ];
 
 export const aboutFounderText = [
@@ -29,50 +28,6 @@ export const aboutFounderText = [
   "As a passionate mentor, Vishal has empowered over 3000 students to conquer frontend development. His guidance has not only helped them master the craft but also provided them with the skills to build real-world projects and contribute to open source. Vishal takes immense pride in the fact that he has played a pivotal role in more than 70 students landing their very first frontend development jobs.",
   "Are you ready to embark on a transformative frontend development experience? Join Frontend Freaks today and let Vishal Rajput be your guiding light. Get ready to unlock your true frontend potential and unleash your superpowers under the guidance of an exceptional mentor. ",
 ];
-
-// export const founderSocialLinks = [
-//   {
-//     href: "https://twitter.com/Vishalraj_1",
-//     icon: (<AiFillTwitterCircle size={45} className="hover:text-[#687eff]" />),
-//   },
-//   {
-//     href: "https://www.linkedin.com/in/vishalraj1/",
-//     icon: <AiFillLinkedin size={45} className="hover:text-[#687eff]" />,
-//   },
-//   {
-//     href: "https://www.youtube.com/c/VishalRajput_1",
-//     icon: <AiFillYoutube size={50} className="hover:text-[#687eff]" />,
-//   },
-//   {
-//     href: "https://github.com/Vishal-raj-1",
-//     icon: <AiFillGithub size={45} className="hover:text-[#687eff]" />,
-//   },
-// ];
-
-// export const aboutSocialLinks = [
-//   {
-//     href: "https://twitter.com/frontendfreaks",
-//     icon: (
-//       <FaTwitterSquare size={45} className="text-white hover:text-[#687eff]" />
-//     ),
-//   },
-//   {
-//     href: "https://www.linkedin.com/company/frontendfreaks/",
-//     icon: (
-//       <AiFillLinkedin
-//         size={50}
-//         className=" text-white   hover:text-[#687eff]"
-//       />
-//     ),
-//   },
-
-//   {
-//     href: "https://www.youtube.com/@Vishalraj_1",
-//     icon: (
-//       <FaYoutube size={55} className=" text-white   hover:text-[#687eff]" />
-//     ),
-//   },
-// ];
 
 export const accordionQuestions = [
   {
@@ -174,9 +129,10 @@ export const batchData = [
     title: "Get Hired",
     linkTo: "hire",
   },
-]
+];
 
 const icon = <FaLaptopCode size={40} className="text-[#687eff] " />;
 const iconString = renderToString(icon);
 const iconURL = `data:image/svg+xml,${encodeURIComponent(iconString)}`;
 console.log(iconURL);
+
